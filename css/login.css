@@ -1,76 +1,103 @@
+:root {
+  --primary-yellow: #f1e217;
+  --earth-brown: #713e24;
+  --white: #ffffff;
+  --leaf-green: #a3c585;
+  --lavender-gray: #cbb4d4;
+  --deep-plum: #5e2750;
+  --light-beige: #f5f0e1;
+  --dusty-blue: #7daea3;
+}
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif; 
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
-    background: linear-gradient(to right, #FFF5E4, #C1D8C3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+  background: var(--light-beige);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
 }
 
 .container {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    width: 420px;
-    text-align: center;
-    border: 2px solid #6A9C89;
+  background-color: var(--white);
+  padding: 40px 35px;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
 }
 
 .logo {
-    width: 100px;
-    margin-bottom: 15px;
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  padding: 10px;
 }
 
 h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-    color: #6A9C89;
+  font-size: 20px;
+  color: var(--deep-plum);
+  text-align: left;
 }
 
 input {
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0;
-    border: 1px solid #6A9C89; 
-    border-radius: 6px;
-    outline: none;
-    background: #FFF5E4; 
+  width: 100%;
+  padding: 14px;
+  margin: 10px 0;
+  border: 1.5px solid var(--dusty-blue);
+  border-radius: 10px;
+  outline: none;
+  background-color: var(--light-beige);
+  color: var(--earth-brown);
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  border-color: var(--leaf-green);
 }
 
 input[type="submit"] {
-    background: #FFA725; 
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    transition: 0.3s ease;
-    border-radius: 6px;
-    padding: 12px;
+  background-color: var(--leaf-green);
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 10px;
+  padding: 14px;
 }
 
 input[type="submit"]:hover {
-    background: #d68629;
+  background-color: var(--dusty-blue);
+}
+
+.forget{
+    text-align: right;
 }
 
 .forget, .signup {
-    margin-top: 10px;
-    font-size: 14px;
+  font-size: 14px;
+  color: var(--earth-brown);
 }
 
 .forget a, .signup a {
-    text-decoration: none;
-    color: #FFA725;
-    font-weight: bold;
+  text-decoration: none;
+  color: var(--primary-yellow);
+  font-weight: 600;
+  transition: color 0.3s ease;
 }
 
 .forget a:hover, .signup a:hover {
-    color: #b55e44; 
+  color: var(--deep-plum);
 }
