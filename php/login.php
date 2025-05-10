@@ -147,7 +147,7 @@ if (isset($_POST["login"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Sunny Bloom</title>
+    <title>Login</title>
     <link rel="icon" type="image/png" href="../assets/logo/logo2.png"/>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/login.css">
@@ -156,13 +156,13 @@ if (isset($_POST["login"])) {
 
     <div class="container">
         <img src="../assets/logo/logo1.png" alt="Sunny Bloom Logo" class="logo">
-        <h3>LOGIN</h3>
+        <h3>Login</h3>
         <form method="POST">
             <input type="text" name="identifier" placeholder="Email or Username" required />
             <input type="password" name="password" placeholder="Password" required />
             <p class="forget"><a href="forgotpassword.php">Forgot Password?</a></p>
             <input type="submit" name="login" value="Login">
-            <p class="signup">New to Sunny Bloom? <a href="register.php"> SIGN UP </a></p>
+            <p class="signup">Don't have an account? <a href="register.php">Register</a></p>
         </form>
     </div>
 
