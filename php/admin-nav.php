@@ -51,7 +51,7 @@ if (isset($_POST['logout'])) {
     <link rel="icon" type="image/png" href="../assets/logo/logo2.png"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=neon|outline|emboss|shadow-multiple">
-    <title>Admin Page - Sunny Bloom</title>
+    <title>Admin Page</title>
 </head>
 
 <body>
@@ -67,23 +67,23 @@ if (isset($_POST['logout'])) {
     <nav class="nav-links">
       <a href="admin-dashboard.php" class="nav-btn">
         <i class="fa-solid fa-house-chimney"></i>
-        <span>DASHBOARD</span>
+        <span>Dashboard</span>
       </a>
       <a href="add-product.php" class="nav-btn">
         <i class="fa-solid fa-box-open"></i>
-        <span>ADD PRODUCT</span>
+        <span>Add Products</span>
       </a>
       <a href="category-management.php" class="nav-btn">
         <i class="fa-solid fa-list"></i>
-        <span>CATEGORY</span>
+        <span>Categories</span>
       </a>
       <a href="product-inventory.php" class="nav-btn">
         <i class="fa-solid fa-clipboard-list"></i>
-        <span>INVENTORY</span>
+        <span>Inventory</span>
       </a>
       <a href="orders.php" class="nav-btn">
         <i class="fa-solid fa-cart-shopping"></i>
-        <span>ORDERS</span>
+        <span>Customer Orders</span>
       </a>
       <a href="pos.php" class="nav-btn">
         <i class="fa-solid fa-chart-simple"></i>
@@ -91,11 +91,11 @@ if (isset($_POST['logout'])) {
       </a>
       <a href="unlock-user.php" class="nav-btn">
         <i class="fa-solid fa-user-group"></i>
-        <span>CUSTOMER</span>
+        <span>Accounts</span>
       </a>
       <a href="customer-design-setting.php" class="nav-btn">
         <i class="fa-solid fa-gears"></i>
-        <span>DESIGN SETTING</span>
+        <span>Design Settings</span>
       </a>
       <a href="customer-landing-page.php" class="nav-btn logout">
         <i class="fa-solid fa-right-from-bracket"></i>
