@@ -1,107 +1,150 @@
+:root {
+  --primary-yellow: #f1e217;
+  --earth-brown: #713e24;
+  --white: #ffffff;
+  --leaf-green: #a3c585;
+  --lavender-gray: #cbb4d4;
+  --deep-plum: #5e2750;
+  --light-beige: #f5f0e1;
+  --dusty-blue: #7daea3;
+}
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
+
 body {
-    background: linear-gradient(to right, #FFF5E4, #C1D8C3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+  background: var(--light-beige);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 20px;
 }
+
 .container {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    width: 460px;
-    text-align: center;
-    border: 2px solid #6A9C89;
+  background: var(--white);
+  padding: 25px 35px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 700px;
 }
-.logo {
-    width: 80px;
-    margin-bottom: 10px;
-}
+
 h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-    color: #6A9C89;
+  font-size: 20px;
+  color: var(--deep-plum);
+  text-align: left;
 }
+
 .form-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: space-between;
+  margin-bottom: 16px;
 }
+
 input {
-    width: calc(50% - 4px);
-    padding: 6px;
-    border: 1px solid #6A9C89;
-    border-radius: 5px;
-    background: #FFF5E4;
-    margin-top: 8px;
+  width: calc(50% - 6px);
+  padding: 12px;
+  border: 1.5px solid var(--dusty-blue);
+  border-radius: 10px;
+  background-color: var(--light-beige);
+  color: var(--earth-brown);
+  font-size: 14px;
+  transition: 0.3s ease;
 }
+
+input:focus {
+  border-color: var(--leaf-green);
+  background-color: #ffffff;
+  outline: none;
+}
+
 input.full-width {
-    width: 100%;
+  width: 100%;
+  margin-top: 12px;
 }
+
 input[type="submit"] {
-    background: #FFA725;
-    color: white;
-    font-size: 14px;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    transition: 0.3s ease;
-    border-radius: 5px;
-    padding: 8px;
-    width: 100%;
+  background: var(--leaf-green);
+  color: var(--white);
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  padding: 14px;
+  cursor: pointer;
+  margin-top: 24px;
+  transition: background-color 0.3s ease;
+  width: 100%;
 }
+
 input[type="submit"]:hover {
-    background: #d68629;
+  background: var(--dusty-blue);
 }
+
 .checkbox-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 15px;
+  display: flex;
+  justify-content: start;
+  align-items: flex-start;
+  margin-top: 16px;
+  font-size: 13px;
+  gap: 10px;
+  text-align: left;
+  line-height: 1.5;
+  color: var(--earth-brown);
 }
 
 .checkbox-container label {
-    display: flex;
-    align-items: center;
-    font-size: 12px;
-    color: #333;
-    gap: 8px;
-    cursor: pointer;
+  display: inline-block;
+  cursor: pointer;
 }
 
 .checkbox-container input {
-    width: 16px;
-    height: 16px;
-    accent-color: #FFA725; 
+  width: 18px;
+  height: 18px;
+  accent-color: var(--leaf-green);
+  margin-top: 2px;
 }
 
 .checkbox-container a {
-    color: #FFA725;
-    font-weight: bold;
-    text-decoration: none;
+  color: var(--primary-yellow);
+  font-weight: 600;
+  text-decoration: none;
 }
 
 .checkbox-container a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .login {
-    margin-top: 8px;
-    font-size: 12px;
+  margin-top: 18px;
+  font-size: 14px;
+  color: var(--earth-brown);
 }
+
 .login a {
-    text-decoration: none;
-    color: #FFA725;
-    font-weight: bold;
+  text-decoration: none;
+  color: var(--primary-yellow);
+  font-weight: 600;
+  transition: color 0.3s ease;
 }
+
 .login a:hover {
-    color: #b55e44;
+  color: var(--deep-plum);
+}
+
+/* Responsive layout */
+@media (max-width: 540px) {
+  .form-group {
+    flex-direction: column;
+  }
+
+  input {
+    width: 100%;
+  }
 }
