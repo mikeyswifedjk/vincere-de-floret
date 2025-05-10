@@ -71,7 +71,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forgot Password - Sunny Bloom</title>
+    <title>Forgot Password</title>
     <link rel="icon" type="image/png" href="../assets/logo/logo2.png" />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/forgotpassword.css">
@@ -80,7 +80,6 @@
 <body>
 
     <div class="container-content">
-        <img src="../assets/logo/logo1.png" alt="Forgot Password">
         <p class="forgot-label">Forgot Password?</p>
         <p class="email-label">Enter your email address</p>
         <form method="POST">
