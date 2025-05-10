@@ -87,55 +87,59 @@ if (isset($_POST["register"])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - Sunny Bloom</title>
+    <title>Register</title>
     <link rel="icon" type="image/png" href="../assets/logo/logo2.png"/>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/register.css">
 </head>
 <body>
-    <div class="container">
-    <img src="../assets/logo/logo1.png" alt="Sunny Bloom Logo" class="logo">
-        <h3>SIGN UP</h3>
+  <div class="container">
+    <h3>Create Your Account</h3>
 
-        <form method="POST" onsubmit="return validateForm();">
+    <form method="POST" onsubmit="return validateForm();">
+      <div class="form-group">
+        <input type="text" id="first_name" name="first_name" placeholder="First Name" required />
+        <input type="text" id="middle_name" name="middle_name" placeholder="Middle Name" required />
+      </div>
 
-            <div class="form-group">
-                <input type="text" id="first_name" name="first_name" placeholder="First Name" required />
-                <input type="text" id="middle_name" name="middle_name" placeholder="Middle Name" required />
-            </div>
+      <div class="form-group">
+        <input type="text" id="last_name" name="last_name" placeholder="Last Name" required />
+        <input type="tel" id="contact_number" name="contact_number" placeholder="Contact Number" required />
+      </div>
 
-            <div class="form-group">
-                <input type="text" id="last_name" name="last_name" placeholder="Last Name" required />
-                <input type="tel" id="contact_number" name="contact_number" placeholder="Contact Number" required />
-            </div>
+      <input type="text" id="address" name="address" placeholder="Address" required class="full-width" />
+      <input type="text" name="name" placeholder="Username" required class="full-width" />
+      <input type="email" name="email" placeholder="Email Address" required class="full-width" />
+      <input type="password" name="password" id="password" placeholder="Password" required class="full-width" />
+      <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required class="full-width" />
 
-            <input type="text" id="address" name="address" placeholder="Address" required class="full-width" />
-            <input type="text" name="name" placeholder="Username" required class="full-width" />
-            <input type="email" name="email" placeholder="info@gmail.com" required class="full-width" />
-            <input type="password" name="password" id="password" placeholder="Password" required class="full-width" />
-            <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required class="full-width" />
-            <input type="submit" name="register" value="REGISTER">
+      <div class="checkbox-container">
+        <input type="checkbox" name="word" id="word" required />
+        <label for="word">
+          I agree to the
+          <a href="#">Terms of Service</a> & <a href="#">Privacy Policy</a>.
+        </label>
+      </div>
 
-            <div class="checkbox-container">
-                <input type="checkbox" name="word" id="word" required />
-                <label for="word">By signing up, You agree to Sunny Bloom's Terms of Service & Privacy Policy.</label>
-            </div>
+      <input type="submit" name="register" value="REGISTER" />
 
-            <p class="login">Have an account? <a href="login.php">LOGIN</a></p>
-        </form>
-    </div>
-    <script>
-        function validateForm() {
-            var password = document.getElementById('password').value;
-            var confirmPassword = document.getElementById('confirm_password').value;
-            if (password !== confirmPassword) {
-                alert('Password and Confirm Password do not match.');
-                return false;
-            }
-            return true;
-        }
-    </script>
+      <p class="login">Already have an account? <a href="login.php">Login</a></p>
+    </form>
+  </div>
+
+  <script>
+    function validateForm() {
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirm_password').value;
+      if (password !== confirmPassword) {
+        alert('Password and Confirm Password do not match.');
+        return false;
+      }
+      return true;
+    }
+  </script>
 </body>
+
 </html>
 
 

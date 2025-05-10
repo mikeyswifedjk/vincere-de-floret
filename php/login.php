@@ -155,7 +155,6 @@ if (isset($_POST["login"])) {
 <body>
 
     <div class="container">
-        <img src="../assets/logo/logo1.png" alt="Sunny Bloom Logo" class="logo">
         <h3>Login</h3>
         <form method="POST">
             <input type="text" name="identifier" placeholder="Email or Username" required />
