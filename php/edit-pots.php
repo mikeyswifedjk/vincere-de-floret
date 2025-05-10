@@ -2,105 +2,131 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 require 'connection.php';
-include('admin-nav.php');
 
-if (!isset($_GET['id'])) {
-    echo "<script>alert('Invalid request'); window.location.href='add-pots.php';</script>";
-    exit;
-}
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
 
-$id = $_GET['id'];
-$result = mysqli_query($conn, "SELECT * FROM pots WHERE id = $id");
+    // Retrieve product details using prepared statements
+    $selectProductQuery = "SELECT * FROM product WHERE id = ?";
+    $stmtProduct = mysqli_prepare($conn, $selectProductQuery);
+    mysqli_stmt_bind_param($stmtProduct, 'i', $id);
+    if (mysqli_stmt_execute($stmtProduct)) {
+        $result = mysqli_stmt_get_result($stmtProduct);
+        $product = mysqli_fetch_assoc($result);
+    } else {
+        echo "Error fetching product details: " . mysqli_stmt_error($stmtProduct);
+    }
+    mysqli_stmt_close($stmtProduct);
 
-if (mysqli_num_rows($result) === 0) {
-    echo "<script>alert('Pots not found'); window.location.href='add-pots.php';</script>";
-    exit;
-}
+    // Check if a product with the specified ID exists
+    if ($product) {
+        if (isset($_POST['submit'])) {
+            // Handle the form submission
+            $newName = mysqli_real_escape_string($conn, $_POST['name']);
+            $newCategory = mysqli_real_escape_string($conn, $_POST['category']);
+            $newPrice = mysqli_real_escape_string($conn, $_POST['prices']);
+            $newQty = mysqli_real_escape_string($conn, $_POST['qtys']);
 
-$row = mysqli_fetch_assoc($result);
+            // Check if a new image is being uploaded
+            if (!empty($_FILES['image']['name'])) {
+                $newImage = $_FILES['image']['name'];
 
-if (isset($_POST['update'])) {
-    $name = $_POST['name'];
-    $stocks = $_POST['stocks'];
-    $price = $_POST['price'];
-    $existingImage = $_POST['existing_image'];
-    $imageToSave = $existingImage;
+                // Specify the directory where you want to save the uploaded image
+                $uploadDir = '../img/';
 
-    if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-        $fileName = $_FILES["image"]["name"];
-        $fileSize = $_FILES["image"]["size"];
-        $tmpName = $_FILES["image"]["tmp_name"];
-        $validImageExtension = ['jpg', 'jpeg', 'png'];
-        $imageExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+                // Get the temporary file name
+                $tempName = $_FILES['image']['tmp_name'];
 
-        if (in_array($imageExtension, $validImageExtension) && $fileSize <= 1000000) {
-            $newImageName = uniqid() . '.' . $imageExtension;
-            move_uploaded_file($tmpName, '../img/' . $newImageName);
+                // Create a unique name for the image
+                $newImageName = time() . '_' . $newImage;
 
-            if (file_exists('../img/' . $existingImage)) {
-                unlink('../img/' . $existingImage);
+                // Move the uploaded image to the destination directory
+                if (move_uploaded_file($tempName, $uploadDir . $newImageName)) {
+                    // Update the product details, including the new image path
+                    $updateProductQuery = "UPDATE product SET name = ?, category = ?, image = ?, price = ?, qty = ? WHERE id = ?";
+                    $stmt = mysqli_prepare($conn, $updateProductQuery);
+                    mysqli_stmt_bind_param($stmt, 'ssssii', $newName, $newCategory, $newImageName, $newPrice, $newQty, $id);
+                    mysqli_stmt_execute($stmt);
+                }
+            } else {
+                // No new image uploaded, update product details without changing the image
+                $updateProductQuery = "UPDATE product SET name = ?, category = ?, price = ?, qty = ? WHERE id = ?";
+                $stmt = mysqli_prepare($conn, $updateProductQuery);
+                mysqli_stmt_bind_param($stmt, 'ssssi', $newName, $newCategory, $newPrice, $newQty, $id);
+                mysqli_stmt_execute($stmt);
             }
 
-            $imageToSave = $newImageName;
-        } else {
-            echo "<script>alert('Invalid image or too large');</script>";
+            echo "<script>alert('Product Updated Successfully'); document.location.href = 'add-product.php';</script>";
         }
+    } else {
+        echo '<script>alert("Product not found with ID: ' . $id . '");</script>';
     }
-
-    $updateQuery = "UPDATE pots SET pots='$name', stocks='$stocks', price='$price', image='$imageToSave' WHERE id=$id";
-    mysqli_query($conn, $updateQuery);
-    echo "<script>alert('Pots updated successfully'); window.location.href='add-pots.php';</script>";
+} else {
+    echo '<script>alert("Product ID not provided");</script>';
 }
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="../assets/logo/logo2.png"/>
-    <link rel="stylesheet" href="../css/edit-pots.css">
-    <title>Update Pots Details - Sunny Bloom</title>
+    <link rel="stylesheet" href="../css/edit-product.css"> 
+    <title>Update Package Deal - Admin Page</title>
 </head>
 <body>
-<div class="main-container">
+    <div class="main-container">
+    <?php include('admin-nav.php'); ?>
+
     <div class="content-wrapper">
     <div class="all">
-    <h1 class="title">Update Pots Details</h1>
-    <form action="" method="post" enctype="multipart/form-data" class="form">
+        <h1 class="title">Update Package Deal</h1>
 
-    <div class="form-group">
-        <label>Name:</label>
-        <input type="text" name="name" value="<?php echo $row['pots']; ?>" required>
+        <form action="" method="post" name="product_form" autocomplete="off" enctype="multipart/form-data" class="form">
+            <div class="form-group">
+                <label for="name">Package Name</label>
+                <input type="text" name="name" id="name" required value="<?= $product['name']; ?>">
+            </div>
+
+            <div class="form-group">
+                <label>Change Image (optional):</label>
+                <input type="file" name="image" id="image" accept=".jpg, .jpeg, .png">
+                <?php if (!empty($product['image'])): ?>
+                    <img class="preview-image" src="../img/<?= $product['image']; ?>" alt="Current Image">
+                <?php endif; ?>
+            </div>
+
+            <div class="form-group">
+                <label for="category">Category</label>
+                <select name="category" id="category" required>
+                    <?php
+                    $categoryQuery = mysqli_query($conn, "SELECT DISTINCT category FROM category");
+                    while ($categoryRow = mysqli_fetch_assoc($categoryQuery)) {
+                        $selected = ($categoryRow['category'] == $product['category']) ? "selected" : "";
+                        echo "<option value='{$categoryRow['category']}' $selected>{$categoryRow['category']}</option>";
+                    }
+                    ?>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="prices">Price</label>
+                <input type="text" name="prices" id="prices" value="<?= $product['price']; ?>" required>
+            </div>
+
+            <div class="form-group">
+                <label for="qtys">Quantity</label>
+                <input type="text" name="qtys" id="qtys" value="<?= $product['qty']; ?>" required>
+            </div>
+
+            <div class="form-group">
+                <button class="submit-btn" type="submit" name="submit">Update</button>
+            </div>
+        </form>
         </div>
-
-        <div class="form-group">
-        <label>Stocks:</label>
-        <input type="text" name="stocks" value="<?php echo $row['stocks']; ?>" required>
-        </div>
-
-        <div class="form-group">
-        <label>Price:</label>
-        <input type="text" name="price" value="<?php echo $row['price']; ?>" required>
-        </div>
-
-        <div class="form-group">
-        <label>Current Image:</label>
-        <img src="../img/<?php echo $row['image']; ?>" class="preview-image">
-        </div>
-
-        <input type="hidden" name="existing_image" value="<?php echo $row['image']; ?>">
-
-        <label>Change Image (optional):</label>
-        <input type="file" name="image" accept=".jpg,.jpeg,.png">
-
-        <div class="form-group">
-        <button class="submit-btn" type="submit" name="update">Update</button>
-        </div>
-    </form>
     </div>
     </div>
-</div>
 </body>
 </html>

@@ -28,19 +28,19 @@ if (isset($_POST["submit"])) {
 
             $res = move_uploaded_file($tmpName, '../img/' . $newImageName);
             if ($res) {
-                // Insert addons data without variants
-                $query = "INSERT INTO addons (name, image, category, qty, price, category_id) 
+                // Insert flowers data without variants
+                $query = "INSERT INTO flowers (name, image, category, qty, price, category_id) 
                           VALUES ('$name', '$newImageName', '$category', '$totalQty', '$price', 
                                   (SELECT id FROM category WHERE category = '$category'))";
 
                 if (mysqli_query($conn, $query)) {
-                    $addonsID = mysqli_insert_id($conn);
+                    $flowersID = mysqli_insert_id($conn);
 
-                    // Increment addons_count
-                    mysqli_query($conn, "UPDATE category SET addons_count = addons_count + 1 
+                    // Increment flowers_count
+                    mysqli_query($conn, "UPDATE category SET flowers_count = flowers_count + 1 
                                          WHERE id = (SELECT id FROM category WHERE category = '$category')");
 
-                    echo "<script>alert('Successfully Added'); document.location.href = 'add-addons.php';</script>";
+                    echo "<script>alert('Successfully Added'); document.location.href = 'add-flowers.php';</script>";
                 } else {
                     echo "Error: " . $query . "<br>" . mysqli_error($conn);
                 }
@@ -59,10 +59,10 @@ if (isset($_POST["submit"])) {
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Add addons - Admin Page</title>
+    <title>Add flowers - Admin Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="../assets/logo/logo2.png"/>
-    <link rel="stylesheet" href="../css/add-addons.css">
+    <link rel="stylesheet" href="../css/add-flowers.css">
 </head>
 <body>
 
@@ -73,14 +73,14 @@ if (isset($_POST["submit"])) {
     <div class="all">
     <!-- Tab Navigation -->
     <div class="tab-container">
-        <div class="product-tab"><a href="add-package.php">Bundle</a></div>
+        <div class="flowers-tab"><a href="add-product.php">Package</a></div>
         <div class="flower-tab"><a href="add-flower.php">Flower</a></div>
         <div class="add-ons-tab"><a href="add-addons.php">Add-Ons</a></div>
         <div class="pots-tab"><a href="add-pots.php">Pots</a></div>
     </div>
 
-    <!-- Add addons Section -->
-    <h1 class="text1">Bundle Deal</h1>
+    <!-- Add flowers Section -->
+    <h1 class="text1">Package Deal</h1>
     <div class="add">
         <form action="" method="post" autocomplete="off" enctype="multipart/form-data">
             <label for="name">Package Name:</label>
@@ -107,32 +107,32 @@ if (isset($_POST["submit"])) {
             <label for="qty">Quantity:</label>
             <input type="text" name="qty" id="qty" required autocomplete="number"><br><br>
 
-            <button type="submit" name="submit" class="buttonaddons">Add Package</button>
+            <button type="submit" name="submit" class="buttonflowers">Add Package</button>
         </form>
     </div>
 
-    <!-- Image addons Upload Preview -->
+    <!-- Image flowers Upload Preview -->
     <div class="imageProd">
         <img src="no-image.webp" id="imagePreview" alt="Image Preview">
     </div>
 
-    <!-- addons List Section -->
+    <!-- flowers List Section -->
     <div class="view">
-        <h1 class="text4">Bundle Deal List</h1>
+        <h1 class="text4">Package Deal List</h1>
 
         <div class="table-controls">
-        <!-- Search addons -->
+        <!-- Search flowers -->
         <form action="" method="post" class="search-form">
-            <input type="text" name="search" id="search" placeholder="Enter addons name" required>
+            <input type="text" name="search" id="search" placeholder="Enter flowers name" required>
             <button type="submit" name="search_submit" class="btnSearch">Search</button>
         </form>
         </div>
 
-        <!-- addons Table -->
+        <!-- flowers Table -->
          
         <!-- Delete Form -->
         <form action="delete-multiple.php" method="post" id="deleteForm">
-                    <button type="submit" class="deletebtn" onclick="deleteaddonss();">Delete Selected</button>
+                    <button type="submit" class="deletebtn" onclick="deleteflowerss();">Delete Selected</button>
                 </form>
         <table border="1" cellspacing="0" cellpadding="10" class="viewTable">
             <tr class="thView">
@@ -148,9 +148,9 @@ if (isset($_POST["submit"])) {
             <?php
             if (isset($_POST['search_submit'])) {
                 $search = $_POST['search'];
-                $rows = mysqli_query($conn, "SELECT * FROM addons WHERE name LIKE '%$search%'");
+                $rows = mysqli_query($conn, "SELECT * FROM flowers WHERE name LIKE '%$search%'");
             } else {
-                $rows = mysqli_query($conn, "SELECT * FROM addons");
+                $rows = mysqli_query($conn, "SELECT * FROM flowers");
             }
 
             foreach ($rows as $row) :
@@ -158,12 +158,12 @@ if (isset($_POST["submit"])) {
                 <tr>
                     <td><?= $row["id"]; ?></td>
                     <td><?= $row["name"]; ?></td>
-                    <td><img src="../img/<?= $row['image']; ?>" width="100px" alt="addons"></td>
+                    <td><img src="../img/<?= $row['image']; ?>" width="100px" alt="flowers"></td>
                     <td><?= $row["category"]; ?></td>
                     <td>₱<?= $row["price"]; ?></td>
                     <td><?= $row["qty"]; ?></td>
                     <td>
-                        <button class="editbtn" onclick="editaddons(<?= $row['id']; ?>)">Edit</button>
+                        <button class="editbtn" onclick="editflowers(<?= $row['id']; ?>)">Edit</button>
                     </td>
                     <td>
                         <input type="checkbox" name="delete[]" value="<?= $row["id"]; ?>">
@@ -178,24 +178,24 @@ if (isset($_POST["submit"])) {
 </div>
 
 <script>
-    function editaddons(addonsId) {
-        window.open('edit-addons.php?id=' + addonsId, '_self');
+    function editflowers(flowersId) {
+        window.open('edit-flowers.php?id=' + flowersId, '_self');
     }
 
-    function deleteaddonss() {
-        var selectedaddonss = document.querySelectorAll('input[name="delete[]"]:checked');
-        var selectedIds = Array.from(selectedaddonss).map(function (addons) {
-            return addons.value;
+    function deleteflowerss() {
+        var selectedflowerss = document.querySelectorAll('input[name="delete[]"]:checked');
+        var selectedIds = Array.from(selectedflowerss).map(function (flowers) {
+            return flowers.value;
         });
 
         if (selectedIds.length > 0) {
-            if (confirm("Are you sure you want to delete these addonss? Items you delete can't be restored")) {
-                document.getElementById('deleteForm').action = 'delete-addons.php?ids=' + selectedIds.join(',');
+            if (confirm("Are you sure you want to delete these flowerss? Items you delete can't be restored")) {
+                document.getElementById('deleteForm').action = 'delete-flowers.php?ids=' + selectedIds.join(',');
             } else {
                 return false;
             }
         } else {
-            alert("Please select at least one addons to delete.");
+            alert("Please select at least one flowers to delete.");
             return false;
         }
     }

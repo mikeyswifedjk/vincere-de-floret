@@ -72,12 +72,12 @@ if (isset($_POST["submit"])) {
     <div class="content-wrapper">
     <div class="all">
     <!-- Tab Navigation -->
-    <!-- <div class="tab-container">
+    <div class="tab-container">
         <div class="product-tab"><a href="add-product.php">Package</a></div>
         <div class="flower-tab"><a href="add-flower.php">Flower</a></div>
         <div class="add-ons-tab"><a href="add-addons.php">Add-Ons</a></div>
         <div class="pots-tab"><a href="add-pots.php">Pots</a></div>
-    </div> -->
+    </div>
 
     <!-- Add Product Section -->
     <h1 class="text1">Package Deal</h1>
