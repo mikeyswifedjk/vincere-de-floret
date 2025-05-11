@@ -78,7 +78,7 @@ $result = mysqli_query($conn, "SELECT * FROM category WHERE category LIKE '%$sea
                 <!-- Category Table -->
                 <form action="" method="post">
                 <button type="submit" name="delete_selected" class="deletebtn">Delete Selected</button>
-                    <table border="1" cellspacing="0" cellpadding="10" class="viewTable">
+                    <table  cellspacing="0" cellpadding="10" class="viewTable">
                         <thead>
                             <tr class="thView">
                                 <th>ID</th>
@@ -95,12 +95,12 @@ $result = mysqli_query($conn, "SELECT * FROM category WHERE category LIKE '%$sea
                                     <td>
                                         <form action="" method="post" class="inline-edit-form">
                                             <input type="hidden" name="edit_id" value="<?php echo $row['id']; ?>">
-                                            <input type="text" name="edit_name" value="<?php echo $row['category']; ?>" required>
+                                            <input type="text" class="edit-input" name="edit_name" value="<?php echo $row['category']; ?>" required>
                                             <button type="submit" name="edit" class="editbtn">Edit</button>
                                         </form>
                                     </td>
                                     <td>
-                                        <input type="checkbox" name="selected_categories[]" value="<?php echo $row['id']; ?>">
+                                        <input type="checkbox" class="delete-checkbox" name="selected_categories[]" value="<?php echo $row['id']; ?>">
                                     </td>
                                 </tr>
                             <?php endwhile; ?>
