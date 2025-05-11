@@ -166,7 +166,7 @@ if (isset($_POST["submit"])) {
                         <button class="editbtn" onclick="editpots(<?= $row['id']; ?>)">Edit</button>
                     </td>
                     <td>
-                        <input type="checkbox" name="delete[]" value="<?= $row["id"]; ?>">
+                        <input type="checkbox" class="delete-checkbox" name="delete[]" value="<?= $row["id"]; ?>">
                     </td>
                 </tr>
             <?php endforeach; ?>
