@@ -134,7 +134,7 @@ if (isset($_POST["submit"])) {
         <form action="delete-multiple.php" method="post" id="deleteForm">
                     <button type="submit" class="deletebtn" onclick="deleteaddonss();">Delete Selected</button>
                 </form>
-        <table border="1" cellspacing="0" cellpadding="10" class="viewTable">
+        <table cellspacing="0" cellpadding="10" class="viewTable">
             <tr class="thView">
                 <th>ID</th>
                 <th>Name</th>
