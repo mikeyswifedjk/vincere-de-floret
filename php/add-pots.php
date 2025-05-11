@@ -59,7 +59,7 @@ if (isset($_POST["submit"])) {
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Add pots - Admin Page</title>
+    <title>Add Pots</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="../assets/logo/logo2.png"/>
     <link rel="stylesheet" href="../css/add-pots.css">
@@ -134,7 +134,7 @@ if (isset($_POST["submit"])) {
         <form action="delete-multiple.php" method="post" id="deleteForm">
                     <button type="submit" class="deletebtn" onclick="deletepotss();">Delete Selected</button>
                 </form>
-        <table border="1" cellspacing="0" cellpadding="10" class="viewTable">
+        <table cellspacing="0" cellpadding="10" class="viewTable">
             <tr class="thView">
                 <th>ID</th>
                 <th>Name</th>
