@@ -34,7 +34,7 @@ include('admin-nav.php');
           $totalSales = isset($totalSalesData['total_sales']) ? $totalSalesData['total_sales'] : 0;
         ?>
         <div class="dashboard-item">
-          <h2>Total Sales</h2>
+          <h2>Sales</h2>
           <p>&#8369; <?php echo $totalSales; ?></p>
         </div>
 
@@ -46,7 +46,7 @@ include('admin-nav.php');
           $totalItemsSold = isset($totalItemsSoldData['total_items_sold']) ? $totalItemsSoldData['total_items_sold'] : 0;
         ?>
         <div class="dashboard-item">
-          <h2>Items Sold</h2>
+          <h2>Sold Items</h2>
           <p><?php echo $totalItemsSold; ?></p>
         </div>
 
@@ -58,7 +58,7 @@ include('admin-nav.php');
           $totalOrders = isset($totalOrdersData['total_orders']) ? $totalOrdersData['total_orders'] : 0;
         ?>
         <div class="dashboard-item">
-          <h2>Total Orders</h2>
+          <h2>Orders</h2>
           <p><?php echo $totalOrders; ?></p>
         </div>
 
@@ -76,7 +76,7 @@ include('admin-nav.php');
           $totalUsers = isset($totalUsersData['total_users']) ? $totalUsersData['total_users'] : 0;
         ?>
         <div class="dashboard-item">
-          <h2>Total Users</h2>
+          <h2>Users</h2>
           <p><?php echo $totalUsers; ?></p>
         </div>
       </div>
