@@ -59,10 +59,11 @@ if (isset($_POST["submit"])) {
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Add Product - Admin Page</title>
+    <title>Add Products</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="../assets/logo/logo2.png"/>
     <link rel="stylesheet" href="../css/add-product.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 
@@ -134,7 +135,7 @@ if (isset($_POST["submit"])) {
         <form action="delete-multiple.php" method="post" id="deleteForm">
                     <button type="submit" class="deletebtn" onclick="deleteProducts();">Delete Selected</button>
                 </form>
-        <table border="1" cellspacing="0" cellpadding="10" class="viewTable">
+        <table cellspacing="0" cellpadding="10" class="viewTable">
             <tr class="thView">
                 <th>ID</th>
                 <th>Name</th>
@@ -166,7 +167,7 @@ if (isset($_POST["submit"])) {
                         <button class="editbtn" onclick="editProduct(<?= $row['id']; ?>)">Edit</button>
                     </td>
                     <td>
-                        <input type="checkbox" name="delete[]" value="<?= $row["id"]; ?>">
+                        <input type="checkbox" class="delete-checkbox" name="delete[]" value="<?= $row["id"]; ?>">
                     </td>
                 </tr>
             <?php endforeach; ?>
