@@ -22,7 +22,7 @@ if (isset($_POST["verify_email"])) {
         $result_update = mysqli_query($conn, $sql_update);
         if ($result_update && mysqli_affected_rows($conn) > 0) {
             if (isset($_GET['type'])) {
-                header("Location: http://localhost/vincere_de_floret/php/updatepassword.php?email=$email");
+                header("Location: http://localhost/vincere-de-floret/php/updatepassword.php?email=$email");
                 exit(); // Ensure no further code execution after redirection
             } else {
                 echo "<script>alert('Successfully Registered!'); document.location.href = 'login.php';</script>";

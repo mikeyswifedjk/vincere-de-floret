@@ -73,7 +73,7 @@ if (isset($_POST["register"])) {
             mysqli_query($conn, $sql);
 
             // Redirect to the email verification page
-            header("Location:http://localhost/vincere_de_floret/php/email-verification.php?email=" . $email);
+            header("Location:http://localhost/vincere-de-floret/php/email-verification.php?email=" . $email);
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: " . $e->getMessage();
         }
