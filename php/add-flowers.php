@@ -62,7 +62,7 @@ if (isset($_POST["submit"])) {
     <title>Add flowers - Admin Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="../assets/logo/logo2.png"/>
-    <link rel="stylesheet" href="../css/add-flowers.css">
+    <link rel="stylesheet" href="../css/add-flower.css">
 </head>
 <body>
 
@@ -73,14 +73,14 @@ if (isset($_POST["submit"])) {
     <div class="all">
     <!-- Tab Navigation -->
     <div class="tab-container">
-        <div class="flowers-tab"><a href="add-product.php">Package</a></div>
-        <div class="flower-tab"><a href="add-flower.php">Flower</a></div>
+        <div class="product-tab"><a href="add-product.php">Package</a></div>
+        <div class="flower-tab"><a href="add-flowers.php">Flower</a></div>
         <div class="add-ons-tab"><a href="add-addons.php">Add-Ons</a></div>
         <div class="pots-tab"><a href="add-pots.php">Pots</a></div>
     </div>
 
     <!-- Add flowers Section -->
-    <h1 class="text1">Package Deal</h1>
+    <h1 class="text1">Flowers</h1>
     <div class="add">
         <form action="" method="post" autocomplete="off" enctype="multipart/form-data">
             <label for="name">Package Name:</label>
@@ -107,7 +107,7 @@ if (isset($_POST["submit"])) {
             <label for="qty">Quantity:</label>
             <input type="text" name="qty" id="qty" required autocomplete="number"><br><br>
 
-            <button type="submit" name="submit" class="buttonflowers">Add Package</button>
+            <button type="submit" name="submit" class="buttonflowers">Add Flower</button>
         </form>
     </div>
 
@@ -118,7 +118,7 @@ if (isset($_POST["submit"])) {
 
     <!-- flowers List Section -->
     <div class="view">
-        <h1 class="text4">Package Deal List</h1>
+        <h1 class="text4">Flower List</h1>
 
         <div class="table-controls">
         <!-- Search flowers -->
