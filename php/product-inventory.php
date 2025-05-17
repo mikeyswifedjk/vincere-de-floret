@@ -38,7 +38,7 @@ $result = mysqli_query($conn, $query);
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Product Inventory - Sunny Bloom</title>
+    <title>Product Inventory</title>
     <link rel="stylesheet" type="text/css" href="../css/product-inventory.css">
     <link rel="icon" type="image/png" href="img/logo.png"/>
 </head>
@@ -60,7 +60,7 @@ $result = mysqli_query($conn, $query);
         </form>
         <button class="report-btn" onclick="window.location.href='inventory-report.php'">Generate Report</button>
     </div>
-        <table border="1" cellspacing="0" cellpadding="10" class="viewTable">
+        <table cellspacing="0" cellpadding="10" class="viewTable">
             <tr>
                 <th>Product ID</th>
                 <th>Name</th>
