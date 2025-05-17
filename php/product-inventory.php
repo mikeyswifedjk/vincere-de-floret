@@ -60,7 +60,7 @@ $result = mysqli_query($conn, $query);
         </form>
         <button class="report-btn" onclick="window.location.href='inventory-report.php'">Generate Report</button>
     </div>
-        <table border="1" cellspacing="0" cellpadding="10" class="viewTable">
+        <table cellspacing="0" cellpadding="10" class="viewTable">
             <tr>
                 <th>Product ID</th>
                 <th>Name</th>
