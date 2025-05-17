@@ -35,7 +35,7 @@ include('admin-nav.php');
             <input class="search-button" type="submit" name="search-btn" id="search-btn" value="Report">
         </form>
         <!-- Display Orders Table -->
-        <table border="1" cellspacing="0" cellpadding="10" class="viewTable">
+        <table cellspacing="0" cellpadding="10" class="viewTable">
             <tr>
                 <th>ID</th>
                 <th>User Name</th>
@@ -85,7 +85,7 @@ include('admin-nav.php');
 
         <h1 class="text1">Order Items</h1>
         <!-- Display Order Items Table -->
-        <table border="1" cellspacing="0" cellpadding="10" class="viewTable">
+        <table cellspacing="0" cellpadding="10" class="viewTable">
            
             <tr>
                 <th>ID</th>
