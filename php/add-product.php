@@ -74,20 +74,20 @@ if (isset($_POST["submit"])) {
     <div class="all">
     <!-- Tab Navigation -->
     <div class="tab-container">
-        <div class="product-tab"><a href="add-product.php">Package</a></div>
-        <div class="flower-tab"><a href="add-flowers.php">Flower</a></div>
+        <div class="product-tab"><a href="add-product.php">Bundle</a></div>
+        <div class="flower-tab"><a href="add-flowers.php">Flowers</a></div>
         <div class="add-ons-tab"><a href="add-addons.php">Add-Ons</a></div>
         <div class="pots-tab"><a href="add-pots.php">Pots</a></div>
     </div>
 
     <!-- Add Product Section -->
-    <h1 class="text1">Package Deal</h1>
+    <h1 class="text1">Bundle Deal</h1>
     <div class="add">
         <form action="" method="post" autocomplete="off" enctype="multipart/form-data">
-            <label for="name">Package Name:</label>
+            <label for="name">Bundle Name:</label>
             <input type="text" name="name" id="name" required autocomplete="name"><br><br>
 
-            <label for="image">Package Image:</label>
+            <label for="image">Bundle Image:</label>
             <input type="file" name="image" id="image" accept=".jpg, .jpeg, .png, .webp, .avif"
                    autocomplete="file" onchange="previewImage(this);" required><br><br>
 
@@ -119,7 +119,7 @@ if (isset($_POST["submit"])) {
 
     <!-- Product List Section -->
     <div class="view">
-        <h1 class="text4">Package Deal List</h1>
+        <h1 class="text4">Bundle List</h1>
 
         <div class="table-controls">
         <!-- Search Product -->

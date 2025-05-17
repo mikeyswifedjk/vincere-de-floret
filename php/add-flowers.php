@@ -28,16 +28,16 @@ if (isset($_POST["submit"])) {
 
             $res = move_uploaded_file($tmpName, '../img/' . $newImageName);
             if ($res) {
-                // Insert flowers data without variants
-                $query = "INSERT INTO flowers (name, image, category, qty, price, category_id) 
+                // Insert product data without variants
+                $query = "INSERT INTO flower (name, image, category, qty, price, category_id) 
                           VALUES ('$name', '$newImageName', '$category', '$totalQty', '$price', 
                                   (SELECT id FROM category WHERE category = '$category'))";
 
                 if (mysqli_query($conn, $query)) {
-                    $flowersID = mysqli_insert_id($conn);
+                    $productID = mysqli_insert_id($conn);
 
-                    // Increment flowers_count
-                    mysqli_query($conn, "UPDATE category SET flowers_count = flowers_count + 1 
+                    // Increment product_count
+                    mysqli_query($conn, "UPDATE category SET product_count = product_count + 1 
                                          WHERE id = (SELECT id FROM category WHERE category = '$category')");
 
                     echo "<script>alert('Successfully Added'); document.location.href = 'add-flowers.php';</script>";
@@ -59,10 +59,11 @@ if (isset($_POST["submit"])) {
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Add flowers - Admin Page</title>
+    <title>Add Flowers</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="../assets/logo/logo2.png"/>
     <link rel="stylesheet" href="../css/add-flower.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 
@@ -73,20 +74,20 @@ if (isset($_POST["submit"])) {
     <div class="all">
     <!-- Tab Navigation -->
     <div class="tab-container">
-        <div class="product-tab"><a href="add-product.php">Package</a></div>
-        <div class="flower-tab"><a href="add-flowers.php">Flower</a></div>
+        <div class="product-tab"><a href="add-product.php">Bundle</a></div>
+        <div class="flower-tab"><a href="add-flowers.php">Flowers</a></div>
         <div class="add-ons-tab"><a href="add-addons.php">Add-Ons</a></div>
         <div class="pots-tab"><a href="add-pots.php">Pots</a></div>
     </div>
 
-    <!-- Add flowers Section -->
+    <!-- Add Product Section -->
     <h1 class="text1">Flowers</h1>
     <div class="add">
         <form action="" method="post" autocomplete="off" enctype="multipart/form-data">
-            <label for="name">Package Name:</label>
+            <label for="name">Flowers Name:</label>
             <input type="text" name="name" id="name" required autocomplete="name"><br><br>
 
-            <label for="image">Package Image:</label>
+            <label for="image">Flowers Image:</label>
             <input type="file" name="image" id="image" accept=".jpg, .jpeg, .png, .webp, .avif"
                    autocomplete="file" onchange="previewImage(this);" required><br><br>
 
@@ -107,32 +108,32 @@ if (isset($_POST["submit"])) {
             <label for="qty">Quantity:</label>
             <input type="text" name="qty" id="qty" required autocomplete="number"><br><br>
 
-            <button type="submit" name="submit" class="buttonflowers">Add Flower</button>
+            <button type="submit" name="submit" class="buttonProduct">Add Flowers</button>
         </form>
     </div>
 
-    <!-- Image flowers Upload Preview -->
+    <!-- Image Product Upload Preview -->
     <div class="imageProd">
         <img src="no-image.webp" id="imagePreview" alt="Image Preview">
     </div>
 
-    <!-- flowers List Section -->
+    <!-- Product List Section -->
     <div class="view">
-        <h1 class="text4">Flower List</h1>
+        <h1 class="text4">Flowers List</h1>
 
         <div class="table-controls">
-        <!-- Search flowers -->
+        <!-- Search Product -->
         <form action="" method="post" class="search-form">
             <input type="text" name="search" id="search" placeholder="Enter flowers name" required>
             <button type="submit" name="search_submit" class="btnSearch">Search</button>
         </form>
         </div>
 
-        <!-- flowers Table -->
+        <!-- Product Table -->
          
         <!-- Delete Form -->
         <form action="delete-multiple.php" method="post" id="deleteForm">
-                    <button type="submit" class="deletebtn" onclick="deleteflowerss();">Delete Selected</button>
+                    <button type="submit" class="deletebtn" onclick="deleteProducts();">Delete Selected</button>
                 </form>
         <table cellspacing="0" cellpadding="10" class="viewTable">
             <tr class="thView">
@@ -148,9 +149,9 @@ if (isset($_POST["submit"])) {
             <?php
             if (isset($_POST['search_submit'])) {
                 $search = $_POST['search'];
-                $rows = mysqli_query($conn, "SELECT * FROM flowers WHERE name LIKE '%$search%'");
+                $rows = mysqli_query($conn, "SELECT * FROM flower WHERE name LIKE '%$search%'");
             } else {
-                $rows = mysqli_query($conn, "SELECT * FROM flowers");
+                $rows = mysqli_query($conn, "SELECT * FROM flower");
             }
 
             foreach ($rows as $row) :
@@ -158,15 +159,15 @@ if (isset($_POST["submit"])) {
                 <tr>
                     <td><?= $row["id"]; ?></td>
                     <td><?= $row["name"]; ?></td>
-                    <td><img src="../img/<?= $row['image']; ?>" width="100px" alt="flowers"></td>
+                    <td><img src="../img/<?= $row['image']; ?>" width="100px" alt="Product"></td>
                     <td><?= $row["category"]; ?></td>
                     <td>₱<?= $row["price"]; ?></td>
                     <td><?= $row["qty"]; ?></td>
                     <td>
-                        <button class="editbtn" onclick="editflowers(<?= $row['id']; ?>)">Edit</button>
+                        <button class="editbtn" onclick="editProduct(<?= $row['id']; ?>)">Edit</button>
                     </td>
                     <td>
-                        <input class="delete-checkbox" type="checkbox" name="delete[]" value="<?= $row["id"]; ?>">
+                        <input type="checkbox" class="delete-checkbox" name="delete[]" value="<?= $row["id"]; ?>">
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -178,24 +179,24 @@ if (isset($_POST["submit"])) {
 </div>
 
 <script>
-    function editflowers(flowersId) {
-        window.open('edit-flowers.php?id=' + flowersId, '_self');
+    function editProduct(productId) {
+        window.open('edit-flowers.php?id=' + productId, '_self');
     }
 
-    function deleteflowerss() {
-        var selectedflowerss = document.querySelectorAll('input[name="delete[]"]:checked');
-        var selectedIds = Array.from(selectedflowerss).map(function (flowers) {
-            return flowers.value;
+    function deleteProducts() {
+        var selectedProducts = document.querySelectorAll('input[name="delete[]"]:checked');
+        var selectedIds = Array.from(selectedProducts).map(function (product) {
+            return product.value;
         });
 
         if (selectedIds.length > 0) {
-            if (confirm("Are you sure you want to delete these flowerss? Items you delete can't be restored")) {
+            if (confirm("Are you sure you want to delete these products? Items you delete can't be restored")) {
                 document.getElementById('deleteForm').action = 'delete-flowers.php?ids=' + selectedIds.join(',');
             } else {
                 return false;
             }
         } else {
-            alert("Please select at least one flowers to delete.");
+            alert("Please select at least one product to delete.");
             return false;
         }
     }

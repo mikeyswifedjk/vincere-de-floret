@@ -14,7 +14,7 @@ require './PHPMailer/src/SMTP.php';
 
 // Check if the user is logged in
 if (isset($_SESSION['user_name'])) {
-    header("Location: http://localhost/flowershop/php/customer-dashboard.php?user=". $_SESSION['user_name']);
+    header("Location: http://localhost/vincere-de-floret/php/customer-dashboard.php?user=". $_SESSION['user_name']);
 } 
 
 // Check if a form parameter named "login" has been submitted via the HTTP POST method.
@@ -56,7 +56,7 @@ if (isset($_POST["login"])) {
         $_SESSION['admin_fullname'] = $admin['fullname'];
 
         // You may add further checks or actions for admin login if needed
-        header("Location: http://localhost/flowershop/php/admin-dashboard.php");
+        header("Location: http://localhost/vincere-de-floret/php/admin-dashboard.php");
         exit;
 
     } else if (mysqli_num_rows($result) > 0){
@@ -100,7 +100,7 @@ if (isset($_POST["login"])) {
     $_SESSION['user_email'] = $email;
 
     // Regular user is logged in, redirect to customer landing page
-    header("Location: http://localhost/flowershop/php/customer-dashboard.php");
+    header("Location: http://localhost/vincere-de-floret/php/customer-dashboard.php");
     exit;
     } else {
         // Email not found
