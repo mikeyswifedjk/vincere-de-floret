@@ -38,7 +38,7 @@ $result = mysqli_query($conn, $query);
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Product Inventory - Sunny Bloom</title>
+    <title>Product Inventory</title>
     <link rel="stylesheet" type="text/css" href="../css/product-inventory.css">
     <link rel="icon" type="image/png" href="img/logo.png"/>
 </head>

@@ -108,7 +108,7 @@ if (isset($_POST["submit"])) {
             <label for="qty">Quantity:</label>
             <input type="text" name="qty" id="qty" required autocomplete="number"><br><br>
 
-            <button type="submit" name="submit" class="buttonProduct">Add Flowers</button>
+            <button type="submit" name="submit" class="buttonProduct">Add Flower</button>
         </form>
     </div>
 
@@ -119,7 +119,7 @@ if (isset($_POST["submit"])) {
 
     <!-- Product List Section -->
     <div class="view">
-        <h1 class="text4">Flowers List</h1>
+        <h1 class="text4">Flower List</h1>
 
         <div class="table-controls">
         <!-- Search Product -->
@@ -133,12 +133,12 @@ if (isset($_POST["submit"])) {
          
         <!-- Delete Form -->
         <form action="delete-multiple.php" method="post" id="deleteForm">
-                    <button type="submit" class="deletebtn" onclick="deleteProducts();">Delete Selected</button>
+                    <button type="submit" class="deletebtn" onclick="deleteProducts();">Delete</button>
                 </form>
         <table cellspacing="0" cellpadding="10" class="viewTable">
             <tr class="thView">
                 <th>ID</th>
-                <th>Name</th>
+                <th>Flowers Name</th>
                 <th>Image</th>
                 <th>Category</th>
                 <th>Price</th>
@@ -190,7 +190,7 @@ if (isset($_POST["submit"])) {
         });
 
         if (selectedIds.length > 0) {
-            if (confirm("Are you sure you want to delete these products? Items you delete can't be restored")) {
+            if (confirm("Are you sure you want to delete these flower? Items you delete can't be restored")) {
                 document.getElementById('deleteForm').action = 'delete-flowers.php?ids=' + selectedIds.join(',');
             } else {
                 return false;

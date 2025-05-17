@@ -27,7 +27,7 @@ if (isset($_POST["register"])) {
     $lname = $_POST['last_name'];
 
     // Check if the email is unique (not already in the database)
-    $conn = mysqli_connect("localhost:3306", "root", "", "flowershop");
+    $conn = mysqli_connect("localhost:3306", "root", "", "vincere_de_floret");
 
     if (!isEmailUnique($conn, $email)) {
         echo "<script>alert('Email already exists. Please choose a different email.'); window.history.back();</script>";
@@ -45,15 +45,15 @@ if (isset($_POST["register"])) {
             // Enable SMTP authentication
             $mail->SMTPAuth = true;
             // SMTP username
-            $mail->Username = 'sunnybloom0812@gmail.com'; // email that will be host
+            $mail->Username = 'vinceredefloret@gmail.com'; // email that will be host
             // SMTP password
-            $mail->Password = 'uxcosnbdmcbawvhc'; // app name password
+            $mail->Password = 'ossmyxegmiivobzm'; // app name password
             // Enable TLS encryption;
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
             $mail->Port = 587;
             // Sender
-            $mail->setFrom('sunnybloom0812@gmail.com', 'SunnyBloom');
+            $mail->setFrom('vinceredefloret@gmail.com', 'Vincere De Floret');
             // Add a recipient
             $mail->addAddress($email, $name);
             // Set email format to HTML
@@ -73,7 +73,7 @@ if (isset($_POST["register"])) {
             mysqli_query($conn, $sql);
 
             // Redirect to the email verification page
-            header("Location:http://localhost/flowershop/php/email-verification.php?email=" . $email);
+            header("Location:http://localhost/vincere_de_floret/php/email-verification.php?email=" . $email);
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: " . $e->getMessage();
         }

@@ -20,8 +20,6 @@ $products = mysqli_query($conn, "SELECT * FROM product WHERE status = 'Available
   <link rel="stylesheet" href="../css/pos.css">
 </head>
 <body>
-
-<h2>Fast Food Style POS</h2>
 <div class="products">
   <?php while($row = mysqli_fetch_assoc($products)): ?>
     <div class="product">

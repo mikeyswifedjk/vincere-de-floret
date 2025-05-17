@@ -44,7 +44,7 @@ if ($conn) {
     <link rel="stylesheet" href="../css/admin-account.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=neon|outline|emboss|shadow-multiple">
-    <title>Admin Account Settings - Sunny Bloom</title>
+    <title>Admin Account Settings - Vincere De Floret</title>
 </head>
 <body>
     <?php
@@ -62,7 +62,7 @@ if ($conn) {
         } else {
             // Hash the new password before updating
             $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
-            $conn = mysqli_connect("localhost:3306", "root", "", "flowershop");
+            $conn = mysqli_connect("localhost:3306", "root", "", "vincere_de_floret");
 
             // Update the default admin password in the database
             $updateSql = "UPDATE admin SET password = '$hashedPassword' WHERE email = 'admin@gmail.com'";
@@ -97,7 +97,7 @@ if ($conn) {
         }
 
         // Update the admin information in the database
-        $conn = mysqli_connect("localhost:3306", "root", "", "flowershop");
+        $conn = mysqli_connect("localhost:3306", "root", "", "vincere_de_floret");
 
         if (!$conn) {
             die("Connection failed: " . mysqli_connect_error());

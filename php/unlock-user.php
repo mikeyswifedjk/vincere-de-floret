@@ -92,7 +92,7 @@ mysqli_close($conn);
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Customer Management - Sunny Bloom</title>
+    <title>Customer Management</title>
     <link rel="icon" type="image/png" href="../assets/logo/logo2.png"/>
     <link rel="stylesheet" href="../css/unlock-user.css">
 </head>

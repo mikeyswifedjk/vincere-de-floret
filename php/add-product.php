@@ -133,12 +133,12 @@ if (isset($_POST["submit"])) {
          
         <!-- Delete Form -->
         <form action="delete-multiple.php" method="post" id="deleteForm">
-                    <button type="submit" class="deletebtn" onclick="deleteProducts();">Delete Selected</button>
+                    <button type="submit" class="deletebtn" onclick="deleteProducts();">Delete</button>
                 </form>
         <table cellspacing="0" cellpadding="10" class="viewTable">
             <tr class="thView">
                 <th>ID</th>
-                <th>Name</th>
+                <th>Bundle Name</th>
                 <th>Image</th>
                 <th>Category</th>
                 <th>Price</th>

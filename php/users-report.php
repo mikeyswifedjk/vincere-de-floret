@@ -24,7 +24,7 @@ mysqli_stmt_close($stmt);
 // TCPDF setup
 $pdf = new TCPDF('L', PDF_UNIT, 'A4', true, 'UTF-8', false);
 $pdf->SetCreator(PDF_CREATOR);
-$pdf->SetAuthor('Sunny Bloom Admin');
+$pdf->SetAuthor('Vincere De Floret Admin');
 $pdf->SetTitle('Users Report');
 $pdf->setPrintHeader(false);
 $pdf->setPrintFooter(false);

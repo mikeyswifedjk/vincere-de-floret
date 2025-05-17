@@ -15,7 +15,7 @@ if (isset($_GET['logout']) && $_GET['logout'] == 1) {
     if (session_status() == PHP_SESSION_ACTIVE) {
         session_destroy();
     }
-    header("Location: http://localhost/flowershop/php/customer-landing-page.php");
+    header("Location: http://localhost/vincere-de-floret/php/customer-landing-page.php");
     exit;
 }
 

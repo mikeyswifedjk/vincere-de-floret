@@ -9,7 +9,7 @@ if (isset($_SESSION['user_name'])) {
     $userName = $_SESSION['user_name'];
 } else {
     // Redirect to the login page or handle accordingly
-    header("Location: http://localhost/flowershop/php/customer-landing-page.php");
+    header("Location: http://localhost/vincere-de-floret/php/customer-landing-page.php");
     exit;
 }
 
@@ -20,7 +20,7 @@ if (isset($_GET['logout']) && $_GET['logout'] == 1) {
     // Destroy the session
     session_destroy();
     // Redirect to the login page or handle accordingly
-    header("Location: http://localhost/flowershop/php/customer-landing-page.php");
+    header("Location: http://localhost/vincere-de-floret/php/customer-landing-page.php");
     exit;
 }
 
@@ -59,7 +59,7 @@ $orderDetails = $_SESSION['order_details'];
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="../assets/logo/logo2.png"/>
-    <title>Order Confirmation - Sunny Bloom</title>
+    <title>Order Confirmation</title>
     <link rel="stylesheet" type="text/css" href="../css/order-confirmation.css">
 </head>
 <body>
@@ -107,7 +107,7 @@ $orderDetails = $_SESSION['order_details'];
             <!-- User Dropdown -->
             <nav class="nav-right">
                 <div class="dropdown">
-                    <button class="dropbtn">Welcome, <?= htmlspecialchars($userName) ?> &#9662;</button>
+                    <button class="dropbtn"><?= htmlspecialchars($userName) ?> &#9662;</button>
                     <div class="dropdown-content">
                         <a href="user-profile-settings.php">Profile Settings</a>
                         <a href="users-change-password.php">Password</a>

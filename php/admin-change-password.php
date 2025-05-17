@@ -2,7 +2,7 @@
 //admin password function
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['change_password'])) {
     // Database connection (modify the credentials as needed)
-    $dbConnection = mysqli_connect("localhost:3306", "root", "", "flowershop");
+    $dbConnection = mysqli_connect("localhost:3306", "root", "", "vincere_de_floret");
 
     // Check connection
     if (!$dbConnection) {

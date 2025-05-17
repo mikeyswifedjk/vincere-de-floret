@@ -177,7 +177,7 @@ function handleImageUpload($file, $column, $existingPath) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="../assets/logo/logo2.png"/>
     <link rel="stylesheet" href="../css/customer-design-setting.css">
-    <title>Design Setting - Sunny Bloom</title>
+    <title>Design Setting</title>
     <style>
         body {
             background-color: <?php echo $bgColor; ?>;

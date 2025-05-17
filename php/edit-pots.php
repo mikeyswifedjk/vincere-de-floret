@@ -7,7 +7,7 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
     // Retrieve product details using prepared statements
-    $selectProductQuery = "SELECT * FROM product WHERE id = ?";
+    $selectProductQuery = "SELECT * FROM pots WHERE id = ?";
     $stmtProduct = mysqli_prepare($conn, $selectProductQuery);
     mysqli_stmt_bind_param($stmtProduct, 'i', $id);
     if (mysqli_stmt_execute($stmtProduct)) {
@@ -43,26 +43,26 @@ if (isset($_GET['id'])) {
                 // Move the uploaded image to the destination directory
                 if (move_uploaded_file($tempName, $uploadDir . $newImageName)) {
                     // Update the product details, including the new image path
-                    $updateProductQuery = "UPDATE product SET name = ?, category = ?, image = ?, price = ?, qty = ? WHERE id = ?";
+                    $updateProductQuery = "UPDATE pots SET name = ?, category = ?, image = ?, price = ?, qty = ? WHERE id = ?";
                     $stmt = mysqli_prepare($conn, $updateProductQuery);
                     mysqli_stmt_bind_param($stmt, 'ssssii', $newName, $newCategory, $newImageName, $newPrice, $newQty, $id);
                     mysqli_stmt_execute($stmt);
                 }
             } else {
                 // No new image uploaded, update product details without changing the image
-                $updateProductQuery = "UPDATE product SET name = ?, category = ?, price = ?, qty = ? WHERE id = ?";
+                $updateProductQuery = "UPDATE pots SET name = ?, category = ?, price = ?, qty = ? WHERE id = ?";
                 $stmt = mysqli_prepare($conn, $updateProductQuery);
                 mysqli_stmt_bind_param($stmt, 'ssssi', $newName, $newCategory, $newPrice, $newQty, $id);
                 mysqli_stmt_execute($stmt);
             }
 
-            echo "<script>alert('Product Updated Successfully'); document.location.href = 'add-product.php';</script>";
+            echo "<script>alert('Pots Updated Successfully'); document.location.href = 'add-product.php';</script>";
         }
     } else {
-        echo '<script>alert("Product not found with ID: ' . $id . '");</script>';
+        echo '<script>alert("Pots not found with ID: ' . $id . '");</script>';
     }
 } else {
-    echo '<script>alert("Product ID not provided");</script>';
+    echo '<script>alert("Pots ID not provided");</script>';
 }
 ?>
 
@@ -74,7 +74,7 @@ if (isset($_GET['id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="../assets/logo/logo2.png"/>
     <link rel="stylesheet" href="../css/edit-product.css"> 
-    <title>Update Package Deal - Admin Page</title>
+    <title>Vincere De Floret</title>
 </head>
 <body>
     <div class="main-container">
@@ -82,16 +82,16 @@ if (isset($_GET['id'])) {
 
     <div class="content-wrapper">
     <div class="all">
-        <h1 class="title">Update Package Deal</h1>
+        <h1 class="title">Update Pots</h1>
 
         <form action="" method="post" name="product_form" autocomplete="off" enctype="multipart/form-data" class="form">
             <div class="form-group">
-                <label for="name">Package Name</label>
+                <label for="name">Pots Name</label>
                 <input type="text" name="name" id="name" required value="<?= $product['name']; ?>">
             </div>
 
             <div class="form-group">
-                <label>Change Image (optional):</label>
+                <label>Pots Image:</label>
                 <input type="file" name="image" id="image" accept=".jpg, .jpeg, .png">
                 <?php if (!empty($product['image'])): ?>
                     <img class="preview-image" src="../img/<?= $product['image']; ?>" alt="Current Image">

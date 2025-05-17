@@ -24,7 +24,7 @@ $dateTime = date("F j, Y - g:i A");
 // Create PDF
 $pdf = new TCPDF('L', PDF_UNIT, 'A4', true, 'UTF-8', false);
 $pdf->SetCreator(PDF_CREATOR);
-$pdf->SetAuthor('Sunny Bloom Admin');
+$pdf->SetAuthor('Vincere De Floret Admin');
 $pdf->SetTitle('Product Inventory Report');
 $pdf->setPrintHeader(false);
 $pdf->setPrintFooter(false);

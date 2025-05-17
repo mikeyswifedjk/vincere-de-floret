@@ -28,16 +28,16 @@ if (isset($_POST["submit"])) {
 
             $res = move_uploaded_file($tmpName, '../img/' . $newImageName);
             if ($res) {
-                // Insert addons data without variants
+                // Insert product data without variants
                 $query = "INSERT INTO addons (name, image, category, qty, price, category_id) 
                           VALUES ('$name', '$newImageName', '$category', '$totalQty', '$price', 
                                   (SELECT id FROM category WHERE category = '$category'))";
 
                 if (mysqli_query($conn, $query)) {
-                    $addonsID = mysqli_insert_id($conn);
+                    $productID = mysqli_insert_id($conn);
 
-                    // Increment addons_count
-                    mysqli_query($conn, "UPDATE category SET addons_count = addons_count + 1 
+                    // Increment product_count
+                    mysqli_query($conn, "UPDATE category SET product_count = product_count + 1 
                                          WHERE id = (SELECT id FROM category WHERE category = '$category')");
 
                     echo "<script>alert('Successfully Added'); document.location.href = 'add-addons.php';</script>";
@@ -59,10 +59,11 @@ if (isset($_POST["submit"])) {
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Add Addons</title>
+    <title>Add Add-Ons</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="../assets/logo/logo2.png"/>
     <link rel="stylesheet" href="../css/add-addons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 
@@ -73,20 +74,20 @@ if (isset($_POST["submit"])) {
     <div class="all">
     <!-- Tab Navigation -->
     <div class="tab-container">
-        <div class="product-tab"><a href="add-package.php">Bundle</a></div>
-        <div class="flower-tab"><a href="add-flowers.php">Flower</a></div>
+        <div class="product-tab"><a href="add-product.php">Bundle</a></div>
+        <div class="flower-tab"><a href="add-flowers.php">Flowers</a></div>
         <div class="add-ons-tab"><a href="add-addons.php">Add-Ons</a></div>
         <div class="pots-tab"><a href="add-pots.php">Pots</a></div>
     </div>
 
-    <!-- Add addons Section -->
-    <h1 class="text1">Bundle Deal</h1>
+    <!-- Add Product Section -->
+    <h1 class="text1">Add-Ons</h1>
     <div class="add">
         <form action="" method="post" autocomplete="off" enctype="multipart/form-data">
-            <label for="name">Package Name:</label>
+            <label for="name">Add-Ons Name:</label>
             <input type="text" name="name" id="name" required autocomplete="name"><br><br>
 
-            <label for="image">Package Image:</label>
+            <label for="image">Add-Ons Image:</label>
             <input type="file" name="image" id="image" accept=".jpg, .jpeg, .png, .webp, .avif"
                    autocomplete="file" onchange="previewImage(this);" required><br><br>
 
@@ -107,37 +108,37 @@ if (isset($_POST["submit"])) {
             <label for="qty">Quantity:</label>
             <input type="text" name="qty" id="qty" required autocomplete="number"><br><br>
 
-            <button type="submit" name="submit" class="buttonaddons">Add Package</button>
+            <button type="submit" name="submit" class="buttonProduct">Add Add-Ons</button>
         </form>
     </div>
 
-    <!-- Image addons Upload Preview -->
+    <!-- Image Product Upload Preview -->
     <div class="imageProd">
         <img src="no-image.webp" id="imagePreview" alt="Image Preview">
     </div>
 
-    <!-- addons List Section -->
+    <!-- Product List Section -->
     <div class="view">
-        <h1 class="text4">Bundle Deal List</h1>
+        <h1 class="text4">Add-Ons List</h1>
 
         <div class="table-controls">
-        <!-- Search addons -->
+        <!-- Search Product -->
         <form action="" method="post" class="search-form">
-            <input type="text" name="search" id="search" placeholder="Enter addons name" required>
+            <input type="text" name="search" id="search" placeholder="Enter add-ons name" required>
             <button type="submit" name="search_submit" class="btnSearch">Search</button>
         </form>
         </div>
 
-        <!-- addons Table -->
+        <!-- Product Table -->
          
         <!-- Delete Form -->
         <form action="delete-multiple.php" method="post" id="deleteForm">
-                    <button type="submit" class="deletebtn" onclick="deleteaddonss();">Delete Selected</button>
+                    <button type="submit" class="deletebtn" onclick="deleteProducts();">Delete</button>
                 </form>
         <table cellspacing="0" cellpadding="10" class="viewTable">
             <tr class="thView">
                 <th>ID</th>
-                <th>Name</th>
+                <th>Add-Ons Name</th>
                 <th>Image</th>
                 <th>Category</th>
                 <th>Price</th>
@@ -158,12 +159,12 @@ if (isset($_POST["submit"])) {
                 <tr>
                     <td><?= $row["id"]; ?></td>
                     <td><?= $row["name"]; ?></td>
-                    <td><img src="../img/<?= $row['image']; ?>" width="100px" alt="addons"></td>
+                    <td><img src="../img/<?= $row['image']; ?>" width="100px" alt="Product"></td>
                     <td><?= $row["category"]; ?></td>
                     <td>₱<?= $row["price"]; ?></td>
                     <td><?= $row["qty"]; ?></td>
                     <td>
-                        <button class="editbtn" onclick="editaddons(<?= $row['id']; ?>)">Edit</button>
+                        <button class="editbtn" onclick="editProduct(<?= $row['id']; ?>)">Edit</button>
                     </td>
                     <td>
                         <input type="checkbox" class="delete-checkbox" name="delete[]" value="<?= $row["id"]; ?>">
@@ -178,24 +179,24 @@ if (isset($_POST["submit"])) {
 </div>
 
 <script>
-    function editaddons(addonsId) {
-        window.open('edit-addons.php?id=' + addonsId, '_self');
+    function editProduct(productId) {
+        window.open('edit-addons.php?id=' + productId, '_self');
     }
 
-    function deleteaddonss() {
-        var selectedaddonss = document.querySelectorAll('input[name="delete[]"]:checked');
-        var selectedIds = Array.from(selectedaddonss).map(function (addons) {
-            return addons.value;
+    function deleteProducts() {
+        var selectedProducts = document.querySelectorAll('input[name="delete[]"]:checked');
+        var selectedIds = Array.from(selectedProducts).map(function (product) {
+            return product.value;
         });
 
         if (selectedIds.length > 0) {
-            if (confirm("Are you sure you want to delete these addonss? Items you delete can't be restored")) {
+            if (confirm("Are you sure you want to delete these add-ons? Items you delete can't be restored")) {
                 document.getElementById('deleteForm').action = 'delete-addons.php?ids=' + selectedIds.join(',');
             } else {
                 return false;
             }
         } else {
-            alert("Please select at least one addons to delete.");
+            alert("Please select at least one product to delete.");
             return false;
         }
     }

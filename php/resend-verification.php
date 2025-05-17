@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
     $email = $_POST['email'];
     $verification_code = substr(number_format(time() * rand(), 0, '', ''), 0, 6);
 
-    $conn = mysqli_connect("localhost:3306", "root", "", "flowershop");
+    $conn = mysqli_connect("localhost:3306", "root", "", "vincere-de-floret");
 
     $update = mysqli_query($conn, "UPDATE users SET verification_code = '$verification_code' WHERE email = '$email'");
 
@@ -25,12 +25,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Username = 'sunnybloom0812@gmail.com'; // your Gmail
-            $mail->Password = 'uxcosnbdmcba wvhc'; // your actual app password (remove spaces)
+            $mail->Username = 'vinceredefloret@gmail.com'; // your Gmail
+            $mail->Password = 'ossm yxeg miiv obzm'; // your actual app password (remove spaces)
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
             $mail->Port = 465;
 
-            $mail->setFrom('sunnybloom0812@gmail.com', 'Sunny Bloom');
+            $mail->setFrom('vinceredefloret@gmail.com', 'Vincere De Floret');
             $mail->addAddress($email);
 
             $mail->isHTML(true);

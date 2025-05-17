@@ -55,7 +55,7 @@ $result = mysqli_query($conn, "SELECT * FROM category WHERE category LIKE '%$sea
     <div class="all">
             
             <!-- Main Page Title -->
-            <h1 class="text1">Add Category Management</h1>
+            <h1 class="text1">Category Management</h1>
             <div class="add">
                 <form action="" method="post" autocomplete="off">
                     <label for="name">Category Name:</label>

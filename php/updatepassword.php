@@ -8,7 +8,7 @@
     //check fields
     $newpassword = md5($_POST['newpassword']);
     $confirmpassword = md5($_POST['confirmpassword']);
-    $conn = mysqli_connect("localhost:3306", "root", "", "flowershop");
+    $conn = mysqli_connect("localhost:3306", "root", "", "vincere_de_floret");
     $sql ="SELECT password FROM users WHERE email='.$email'";
     $result = mysqli_query($conn, $sql);
     //check two new passwords
@@ -31,7 +31,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Password - Sunny Bloom</title>
+    <title>Vincere De Floret</title>
     <link rel="icon" type="image/png" href="../assets/logo/logo2.png"/>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/updatepassword.css">

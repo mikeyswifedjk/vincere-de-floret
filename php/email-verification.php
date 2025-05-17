@@ -4,7 +4,7 @@ if (isset($_POST["verify_email"])) {
     $verification_code = $_POST["verification_code"];
     
     // Connect with the database
-    $conn = mysqli_connect("localhost:3306", "root", "", "flowershop");
+    $conn = mysqli_connect("localhost:3306", "root", "", "vincere_de_floret");
     
     // Check if the verification code is correct
     $sql = "SELECT * FROM users WHERE email = '$email' AND verification_code = '$verification_code'";
@@ -22,7 +22,7 @@ if (isset($_POST["verify_email"])) {
         $result_update = mysqli_query($conn, $sql_update);
         if ($result_update && mysqli_affected_rows($conn) > 0) {
             if (isset($_GET['type'])) {
-                header("Location: http://localhost/flowershop/php/updatepassword.php?email=$email");
+                header("Location: http://localhost/vincere_de_floret/php/updatepassword.php?email=$email");
                 exit(); // Ensure no further code execution after redirection
             } else {
                 echo "<script>alert('Successfully Registered!'); document.location.href = 'login.php';</script>";
@@ -47,7 +47,7 @@ if (isset($_POST["verify_email"])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verify Code - Sunny Bloom</title>
+    <title>Vincere De Floret</title>
     <link rel="icon" type="image/png" href="../assets/logo/logo2.png"/>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/email-verification.css">

@@ -5,7 +5,7 @@ ini_set('display_errors', 1);
 require 'connection.php';
 
 if (!isset($_SESSION['user_name'])) {
-    header("Location: http://localhost/flowershop/php/customer-landing-page.php");
+    header("Location: http://localhost/vincere-de-floret/php/customer-landing-page.php");
     exit;
 }
 
@@ -26,7 +26,7 @@ if ($settingsResult && mysqli_num_rows($settingsResult) > 0) {
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>My Purchases - Sunny Bloom</title>
+  <title>My Purchases</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
   <link rel="icon" type="image/png" href="../assets/logo/logo2.png" />
   <link rel="stylesheet" href="../css/purchases.css">
@@ -70,7 +70,7 @@ if ($settingsResult && mysqli_num_rows($settingsResult) > 0) {
     </a>
     <nav class="nav-right">
       <div class="dropdown">
-        <button class="dropbtn">Welcome, <?= htmlspecialchars($userName) ?> &#9662;</button>
+        <button class="dropbtn"><?= htmlspecialchars($userName) ?> &#9662;</button>
         <div class="dropdown-content">
           <a href="user-profile-settings.php">Profile Settings</a>
           <a href="users-change-password.php">Password</a>

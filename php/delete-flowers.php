@@ -9,7 +9,7 @@ if (isset($_GET['ids']) && !empty($_GET['ids'])) {
     // Get the categories of the deleted products along with the count
     $deletedProductCategories = [];
     foreach ($selectedIds as $id) {
-        $categoryQuery = mysqli_query($conn, "SELECT category_id, image FROM product WHERE id = '$id'");
+        $categoryQuery = mysqli_query($conn, "SELECT category_id, image FROM flower WHERE id = '$id'");
         $categoryRow = mysqli_fetch_assoc($categoryQuery);
         $category_id = $categoryRow['category_id'];
         $imagePath = $categoryRow['image']; // Save the image path to delete it later
@@ -24,7 +24,7 @@ if (isset($_GET['ids']) && !empty($_GET['ids'])) {
 
     foreach ($selectedIds as $id) {
         // Use prepared statements to delete the product
-        $deleteProductQuery = "DELETE FROM product WHERE id = ?";
+        $deleteProductQuery = "DELETE FROM flower WHERE id = ?";
         $stmt = mysqli_prepare($conn, $deleteProductQuery);
         mysqli_stmt_bind_param($stmt, 'i', $id);
 
@@ -32,7 +32,7 @@ if (isset($_GET['ids']) && !empty($_GET['ids'])) {
             // Product deleted successfully
             mysqli_stmt_close($stmt);
         } else {
-            echo "Error deleting product with ID $id: " . mysqli_error($conn);
+            echo "Error deleting flower with ID $id: " . mysqli_error($conn);
         }
     }
 
@@ -48,10 +48,10 @@ if (isset($_GET['ids']) && !empty($_GET['ids'])) {
 
     // Set a success message in the session
     session_start();
-    $_SESSION['success_message'] = "Selected products were successfully deleted.";
+    $_SESSION['success_message'] = "Selected flowers were successfully deleted.";
 
     // Redirect back to the product list page
-    header('Location: add-product.php');
+    header('Location: add-flowers.php');
     exit();
 } else {
     echo "No product IDs provided for deletion.";

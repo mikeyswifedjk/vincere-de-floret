@@ -1,5 +1,7 @@
 <?php
-$conn = mysqli_connect("localhost:3306", "root", "", "flowershop");
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+require 'connection.php';
 
 // Check if the newUsername query parameter is set
 if (isset($_GET["newUsername"])) {

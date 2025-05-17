@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="../assets/logo/logo2.png"/>
-    <title>BDO Payment - Sunny Bloom</title>
+    <title>BDO Payment - Vincere De Floret</title>
     <link rel="stylesheet" type="text/css" href="../css/bdo-payment.css">
 </head>
 <body>
