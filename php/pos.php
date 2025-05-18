@@ -20,44 +20,66 @@ $products = mysqli_query($conn, "SELECT * FROM product WHERE status = 'Available
   <link rel="stylesheet" href="../css/pos.css">
 </head>
 <body>
-<div class="products">
-  <?php while($row = mysqli_fetch_assoc($products)): ?>
-    <div class="product">
-      <img src="../img/<?= $row['image'] ?>" alt="<?= $row['name'] ?>">
-      <h4><?= $row['name'] ?></h4>
-      <p>₱<?= number_format($row['price'], 2) ?></p>
-      <button onclick="addToCart(<?= $row['id'] ?>, '<?= $row['name'] ?>', <?= $row['price'] ?>)">Add</button>
+
+<div class="main-container">
+  <div class="content-wrapper">
+    <div class="all">
+      <h2 class="page-title">Point Of Sales System</h2>
+
+      <div class="pos-grid">
+        <!-- Products Section -->
+        <section class="products-section">
+          <h3>Available Products</h3>
+          <div class="products">
+            <?php while($row = mysqli_fetch_assoc($products)): ?>
+              <div class="product-card">
+                <img src="../img/<?= $row['image'] ?>" alt="<?= $row['name'] ?>">
+                <h4><?= $row['name'] ?></h4>
+                <p>₱<?= number_format($row['price'], 2) ?></p>
+                <button onclick="addToCart(<?= $row['id'] ?>, '<?= $row['name'] ?>', <?= $row['price'] ?>)">Add</button>
+              </div>
+            <?php endwhile; ?>
+          </div>
+        </section>
+
+        <!-- Cart & Payment Section -->
+        <aside class="cart-section">
+          <h3>Your Cart</h3>
+          <form method="POST" action="process-pos.php" onsubmit="return validateCash()">
+            <div class="cart" id="cart"></div>
+
+            <div class="cart-summary">
+              <p><strong>Total Amount: ₱<span id="totalAmount">0.00</span></strong></p>
+
+              <label for="payment_method">Payment Method:</label>
+              <select name="payment_method" id="payment_method" onchange="toggleCashField()" required>
+                <option value="Cash">Cash</option>
+                <option value="Gcash">Gcash</option>
+                <option value="BDO">BDO</option>
+              </select>
+
+              <div id="cashInput">
+                <label>Amount Tendered: ₱</label>
+                <input type="number" id="amountPaid" name="amount_paid" step="0.01" min="0" oninput="computeChange()" required>
+                <p><strong>Change: ₱<span id="changeAmount">0.00</span></strong></p>
+              </div>
+
+              <input type="hidden" name="cart_data" id="cart_data">
+              <input type="hidden" name="cashier_name" value="<?= $cashierName ?>">
+
+              <div class="action-buttons">
+                <button class="delete-button" type="button" onclick="removeSelected()">Remove Selected</button>
+                <button class="submit-btn" type="submit">Confirm & Pay</button>
+              </div>
+            </div>
+          </form>
+        </aside>
+      </div>
     </div>
-  <?php endwhile; ?>
+  </div>
 </div>
 
-<h3>Cart</h3>
-<form method="POST" action="process-pos.php" onsubmit="return validateCash()">
-  <div class="cart" id="cart"></div>
 
-  <div class="cart-summary">
-    <p><strong>Total Amount: ₱<span id="totalAmount">0.00</span></strong></p>
-    
-    <label>Payment Method:</label>
-    <select name="payment_method" id="payment_method" onchange="toggleCashField()" required>
-      <option value="Cash">Cash</option>
-      <option value="Gcash">Gcash</option>
-      <option value="BDO">BDO</option>
-    </select><br><br>
-
-    <div id="cashInput" style="display: block;">
-      <label>Amount Tendered: ₱</label>
-      <input type="number" id="amountPaid" name="amount_paid" step="0.01" min="0" oninput="computeChange()" required><br><br>
-      <p><strong>Change: ₱<span id="changeAmount">0.00</span></strong></p>
-    </div>
-
-    <input type="hidden" name="cart_data" id="cart_data">
-    <input type="hidden" name="cashier_name" value="<?= $cashierName ?>">
-    
-    <button type="button" onclick="removeSelected()">Remove Selected</button>
-    <button type="submit">Confirm & Pay</button>
-  </div>
-</form>
 
 <script>
 let cart = [];
