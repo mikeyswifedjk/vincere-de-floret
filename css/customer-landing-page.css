@@ -1,52 +1,70 @@
-/* Reset some default styles */
+:root {
+  --primary-yellow: #f1e217;
+  --earth-brown: #713e24;
+  --white: #ffffff;
+  --leaf-green: #a3c585;
+  --lavender-gray: #cbb4d4;
+  --deep-plum: #5e2750;
+  --light-beige: #f5f0e1;
+  --dusty-blue: #7daea3;
+}
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Body background and layout */
 body {
-    background: linear-gradient(to right, #ffdde1, #ee9ca7);
-    color: #333;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  background: linear-gradient(135deg, var(--light-beige), var(--dusty-blue));
+  color: var(--earth-brown);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
 }
 
-/* Logo icon if added later */
-.fa-flower {
-    color: #e91e63;
-    margin-right: 10px;
-}
-
-/* Heading styles */
 h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    color: #c2185b;
-    text-shadow: 1px 1px 2px #fff;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: var(--deep-plum);
+  text-shadow: 1px 1px 2px var(--white);
 }
 
-/* Paragraph styles */
 p {
-    font-size: 1.2rem;
-    margin: 10px 0;
-    max-width: 600px;
-    text-align: center;
-    line-height: 1.6;
+  font-size: 1.2rem;
+  max-width: 600px;
+  line-height: 1.6;
+  color: var(--earth-brown);
 }
 
-/* Responsive text */
-@media (max-width: 600px) {
-    h1 {
-        font-size: 2rem;
-    }
+.button-primary {
+  margin-top: 2rem;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--leaf-green);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
-    p {
-        font-size: 1rem;
-    }
+.button-primary:hover {
+  background-color: var(--deep-plum);
+}
+
+/* Mobile-friendly */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
 }
