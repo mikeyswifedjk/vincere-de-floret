@@ -11,7 +11,7 @@ include('admin-nav.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/admin-dashboard.css">
     <link rel="icon" type="image/png" href="../assets/logo/logo2.png"/>
-    <title>Admin Dashboard - Sunny Bloom</title>
+    <title>Admin Dashboard</title>
 </head>
 <body>
 <div class="main-container">
