@@ -54,7 +54,6 @@ if (isset($_POST["verify_email"])) {
 </head>
 <body>
     <div class="content-container">
-    <img src="../assets/logo/logo1.png" alt="Forgot Password" class="logo">
         <h3>Verify Your Email</h3>
         <form method="POST">
             <input type="hidden" name="email" value="<?php echo $_GET['email']; ?>" required>

@@ -202,7 +202,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <form id="checkout-form" method="POST" action="checkout.php">
       <div class="products">
         <h2>PRODUCT LIST</h2>
-        <button type="button" onclick="window.location.href='custom-letter.php'">Create Custom Letter</button>
+        <button type="button" class="create-custom-letter" onclick="window.location.href='custom-letter.php'">Create Custom Letter</button>
         <div class="cart-summary">
           <?php
             $totalPrice = 0;
@@ -265,16 +265,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <div class="order-summary">
         <h2>ORDER SUMMARY</h2>
         <div class="order-summary-details">
-            <p>Shipping Fee: FREE SHIPPING</p>
-            <p style="color: red;">Total Amount: ₱
-                <span id="total_amount">
+            <p style="display: flex; justify-content: space-between; align-items: center;">
+                <span>Shipping Fee:</span>
+                <span style="color: #fff; font-weight: bold;">FREE SHIPPING</span>
+            </p>
+            <p style="display: flex; justify-content: space-between; align-items: center; color: red;">
+                <span>Total Amount:</span>
+                <span style="font-weight: bold;" id="total_amount">
                     <?php echo number_format($totalPrice, 2); ?>
                 </span>
             </p>
         </div>
       </div>
 
-      <button type="submit">PLACE ORDER</button>
+      <button type="submit" class="place-order">Place Order</button>
     </form>
   </div>
 </body>

@@ -109,6 +109,7 @@ body {
 .dropdown-content {
   display: none;
   position: absolute;
+  right: 10px;
   background-color: var(--white);
   color: var(--earth-brown);
   min-width: 160px;
@@ -212,7 +213,13 @@ body {
   box-shadow: 0 6px 12px rgba(0,0,0,0.05);
   overflow: hidden;
   transition: transform 0.3s;
+  text-decoration: none;
 }
+
+.product-link {
+  text-decoration: none;
+}
+
 
 .items:hover {
   transform: translateY(-5px);

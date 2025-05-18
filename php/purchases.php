@@ -26,7 +26,7 @@ if ($settingsResult && mysqli_num_rows($settingsResult) > 0) {
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>My Purchases</title>
+  <title>Purchases</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
   <link rel="icon" type="image/png" href="../assets/logo/logo2.png" />
   <link rel="stylesheet" href="../css/purchases.css">
@@ -99,7 +99,7 @@ mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 
 if ($result && mysqli_num_rows($result) > 0) {
-    echo "<table border='1' cellpadding='10' cellspacing='0'>";
+    echo "<table cellpadding='10' cellspacing='0'>";
     echo "<tr>
             <th>Product</th>
             <th>Image</th>

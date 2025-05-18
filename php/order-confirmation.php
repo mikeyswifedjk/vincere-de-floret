@@ -122,10 +122,12 @@ $orderDetails = $_SESSION['order_details'];
     <div class="confirmation-container">
         <h1>Order Confirmation</h1>
         <p >Thank you for your order!</p>
-        <p>Name: <?= htmlspecialchars($orderDetails['name']) ?></p>
-        <p>Phone: <?= htmlspecialchars($orderDetails['phone']) ?></p>
-        <p>Address: <?= htmlspecialchars($orderDetails['address']) ?></p>
-        <p>Total Amount: ₱<?= number_format($orderDetails['total_amount'], 2) ?></p>
+        <div class="order-summary">
+            <p>Name: <?= htmlspecialchars($orderDetails['name']) ?></p>
+            <p>Phone: <?= htmlspecialchars($orderDetails['phone']) ?></p>
+            <p>Address: <?= htmlspecialchars($orderDetails['address']) ?></p>
+            <p>Total Amount: ₱<?= number_format($orderDetails['total_amount'], 2) ?></p>
+        </div>
         <h2>Order Details</h2>
         <div class="order-items">
             <?php

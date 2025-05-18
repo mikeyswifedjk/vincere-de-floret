@@ -107,6 +107,7 @@ body {
 .dropdown-content {
   display: none;
   position: absolute;
+  right: 10px;
   background-color: var(--white);
   color: var(--earth-brown);
   min-width: 160px;
@@ -147,7 +148,6 @@ table {
 th, td {
   padding: 16px;
   text-align: center;
-  border: 1px solid var(--lavender-gray);
 }
 
 th {

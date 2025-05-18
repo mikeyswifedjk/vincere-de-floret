@@ -66,8 +66,8 @@ if ($resultSettings->num_rows > 0) {
   <!-- LOGIN | SIGN UP -->
   <div class="header-right">
     <nav class="nav-right">
-      <a href="login.php" class="auth-link">Login</a>
-      <a href="register.php" class="auth-link">SignUp</a>
+      <a href="login.php" class="auth-link" style="text-decoration: none; color: <?= $fontColor ?>; font-weight: bold; font-size: 1.2rem;">Login</a>
+      <a href="register.php" class="auth-link" style="text-decoration: none; color: <?= $fontColor ?>; font-weight: bold; font-size: 1.2rem;">SignUp</a>
     </nav>
   </div>
 </header>
