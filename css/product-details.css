@@ -109,6 +109,7 @@ body {
 .dropdown-content {
   display: none;
   position: absolute;
+  right: 10px;
   background-color: var(--white);
   color: var(--earth-brown);
   min-width: 160px;

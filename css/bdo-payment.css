@@ -1,103 +1,119 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
-  body {
-    background-color: #092a7b;
-    color: #333;
-    line-height: 1.6;
-  }
+:root {
+  --bdo-blue: #002f6c;
+  --bdo-gold: #fcb913;
+  --bdo-light: #f4f6f8;
+  --bdo-gray: #e0e0e0;
+  --bdo-shadow: rgba(0, 47, 108, 0.1);
+}
 
-  .background-image img {
-    width: 100%;
-    height: auto;
-    max-height: 250px;
-    object-fit: cover;
-  }
-  
-  .payment-container {
-    background: white;
-    max-width: 500px;
-    margin: -80px auto 40px;
-    padding: 30px 40px;
-    border-radius: 12px;
-    position: relative;
-    z-index: 10;
-  }
-  
-  .bdo-title {
-    text-align: center;
-    font-size: 2em;
-    color: #0038a8;
-  }
-  
-  .bdo-title span {
-    color: #f5b400; 
-  }
-  
-  .instruction {
-    text-align: center;
-    color: #444;
-    margin-bottom: 20px;
-  }
-  
-  .amount {
-    font-weight: bold;
-    text-align: center;
-    font-size: 1.2em;
-    margin-bottom: 20px;
-  }
-  
-  .amount span {
-    color: #0038a8;
-  }
-  
-  .error {
-    color: red;
-    font-size: 0.95em;
-    text-align: center;
-    margin-bottom: 10px;
-  }
-  
-  .payment-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .payment-form label {
-    font-weight: 600;
-    color: #222;
-  }
-  
-  .payment-form input {
-    padding: 10px 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 1em;
-  }
-  
-  .payment-form input:focus {
-    border-color: #0038a8;
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(0, 56, 168, 0.2);
-  }
-  
-  .payment-form button {
-    background-color: #0038a8;
-    color: white;
-    border: none;
-    padding: 12px;
-    font-size: 1em;
-    font-weight: bold;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  
-  .payment-form button:hover {
-    background-color: #002a7a;
-  }
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background-color: var(--bdo-light);
+  color: var(--bdo-blue);
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100vh;
+  opacity: 0.05;
+}
+
+.background-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.payment-container {
+  max-width: 500px;
+  background: #fff;
+  margin: 80px auto;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 12px 24px var(--bdo-shadow);
+  border-top: 6px solid var(--bdo-gold);
+  text-align: center;
+}
+
+.bdo-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--bdo-blue);
+  margin-bottom: 10px;
+}
+
+.bdo-title span {
+  color: var(--bdo-gold);
+}
+
+.instruction {
+  font-size: 1rem;
+  margin-bottom: 20px;
+  color: var(--bdo-blue);
+}
+
+.amount {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+.amount span {
+  color: var(--bdo-gold);
+}
+
+.error {
+  color: red;
+  background-color: #ffe5e5;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+.payment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  text-align: left;
+}
+
+.payment-form label {
+  font-weight: 600;
+  color: var(--bdo-blue);
+}
+
+.payment-form input {
+  padding: 12px;
+  border: 1px solid var(--bdo-gray);
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.payment-form input:focus {
+  outline: none;
+  border-color: var(--bdo-blue);
+  box-shadow: 0 0 5px var(--bdo-shadow);
+}
+
+.payment-form button {
+  margin-top: 20px;
+  background-color: var(--bdo-blue);
+  color: white;
+  padding: 14px;
+  border: none;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.payment-form button:hover {
+  background-color: var(--bdo-gold);
+  color: var(--bdo-blue);
+}
