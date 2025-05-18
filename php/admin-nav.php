@@ -73,7 +73,7 @@ if (isset($_POST['logout'])) {
       </a>
       <a href="add-product.php" class="nav-btn">
         <i class="fa-solid fa-box-open"></i>
-        <span>Add Products</span>
+        <span>Products</span>
       </a>
       <a href="category-management.php" class="nav-btn">
         <i class="fa-solid fa-list"></i>
@@ -98,6 +98,14 @@ if (isset($_POST['logout'])) {
       <a href="customer-design-setting.php" class="nav-btn">
         <i class="fa-solid fa-gears"></i>
         <span>Design Settings</span>
+      </a>
+      <a href="crud-shipping.php" class="nav-btn">
+        <i class="fa-solid fa-truck-fast"></i>
+        <span>Shipping</span>
+      </a>
+      <a href="crud-discount.php" class="nav-btn">
+        <i class="fa-solid fa-tag"></i>
+        <span>Discount</span>
       </a>
       <a href="customer-landing-page.php" class="nav-btn logout">
         <i class="fa-solid fa-right-from-bracket"></i>
