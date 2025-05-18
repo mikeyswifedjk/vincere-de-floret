@@ -72,38 +72,43 @@ $result = mysqli_query($conn, $searchQuery);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="img/logo.png"/>
-    <link rel="stylesheet" type="text/css" href="css/crud-shipping.css">
-    <title>SHIPPING</title>
+    <link rel="stylesheet" type="text/css" href="../css/crud-shipping.css">
+    <title>Shipping Management</title>
 </head>
-<body>
-    <h1 class="text1">SHIPPING MANAGEMENT</h1>
+<>
+    <div class="main-container">
+
+    <div class="content-wrapper">
+
     <div class="all">
+    <h1 class="text1">SHIPPING MANAGEMENT</h1>
         <div class="add">
             <form action="" method="post" autocomplete="off">
                 <label for="address">LOCATION: </label>
                 <input type="text" name="address" id="address" required placeholder="Enter location"> <br> <br>
                 <label for="fee">AMOUNT FEE: </label>
                 <input type="text" name="fee" id="fee" required placeholder="Enter amount fee"> <br> <br>
-                <button type="submit" name="submit" class="btnSubmit">Submit</button>
+                <button type="submit" name="submit" class="buttonProduct">Submit</button>
             </form>
         </div> <!-- add -->
 
         <div class="view">
             <!-- Search Form -->
+             <h2 class="text4">SHIPPING RATES</h2><br>
             
-            <form action="" method="get" class="searchForm">
-                <h2 class="text4">SHIPPING RATES</h2>
+            <form action="" method="get" class="search-form">
+                
                 <input type="text" name="search" class="searchtxt" id="search" placeholder="Enter address..." required />
                 <button type="submit" class="btnSearch">
-                    <i class="fa-solid fa-magnifying-glass" style="color: #502779;"></i>
+                    <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
-            </form> <br>
+            </form> 
 
             <form action="" method="POST">
                 <button type="submit" name="delete_selected" class="deletebtn">
-                    <i class="fa-solid fa-trash" style="color: #AD53A6"></i>
-                </button>
-                <table border="1" cellspacing="0" cellpadding="10">
+                    Delete Selected
+                    </button>
+                <table cellspacing="0" cellpadding="10" class="viewTable">
 
                     <tr class="thView">
                         <th>ID</th>
@@ -119,7 +124,7 @@ $result = mysqli_query($conn, $searchQuery);
                         <td><?php echo $row['fee']; ?></td>
                         <td class="editForm">
                             <!-- Edit Form -->
-                            <form action="" method="post">
+                            <form action="" method="post" class="inline-edit-form">
                                 <input type="hidden" name="edit_id" value="<?php echo $row['id']; ?>">
                                 <label for="edit_address">Location:</label>
                                 <input type="text" name="edit_address" class="input" value="<?php echo $row['address']; ?>" required><br><br>
@@ -131,7 +136,7 @@ $result = mysqli_query($conn, $searchQuery);
                             </form>
                         </td>
                         <td>
-                            <input type="checkbox" name="selected_categories[]" value="<?php echo $row['id']; ?>">
+                            <input type="checkbox" class="delete-checkbox" name="selected_categories[]" value="<?php echo $row['id']; ?>">
                         </td>
                     </tr>
                     <?php endwhile; ?>
@@ -140,5 +145,7 @@ $result = mysqli_query($conn, $searchQuery);
             </form>
         </div>
     </div> 
+    </div>
+    </div>
 </body>
 </html>

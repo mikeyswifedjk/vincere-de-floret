@@ -186,3 +186,77 @@ body {
 .submit-btn:hover {
   background-color: #4a3455;
 }
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 40px 1fr auto;
+  grid-template-rows: auto auto;
+  gap: 10px 15px;
+  background-color: var(--snow-white);
+  border: 1px solid var(--light-lavender);
+  border-radius: 16px;
+  padding: 20px 24px;
+  box-shadow: 0 6px 18px var(--soft-shadow);
+  margin-bottom: 24px;
+  transition: all 0.3s ease;
+  align-items: center;
+}
+
+.cart-item:hover {
+  box-shadow: 0 8px 24px rgba(106, 78, 119, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Checkbox */
+.cart-item input[type="checkbox"] {
+  grid-row: span 2;
+  align-self: start;
+  accent-color: var(--rich-purple);
+  transform: scale(1.3);
+  cursor: pointer;
+}
+
+/* Product Name */
+.cart-item h4 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--rich-purple);
+  margin: 0;
+}
+
+/* Quantity + Price Row */
+.cart-item p {
+  font-size: 1rem;
+  color: var(--slate-gray);
+  margin: 0;
+}
+
+.qty-input {
+  width: 70px;
+  padding: 6px 10px;
+  font-size: 1rem;
+  border: 2px solid var(--sage-green);
+  border-radius: 10px;
+  text-align: center;
+  margin-left: 5px;
+  background-color: var(--cloud-gray);
+  color: var(--rich-purple);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.qty-input:focus {
+  border-color: var(--floral-rose);
+  box-shadow: 0 0 5px var(--floral-rose);
+  outline: none;
+}
+
+/* Total Price Styling */
+.cart-item p:last-of-type {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--floral-rose);
+  grid-column: 2 / span 2;
+  margin-top: 10px;
+  align-self: end;
+}
+
