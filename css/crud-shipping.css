@@ -229,7 +229,7 @@ body {
   max-width: 800px;
 }
 
-.search-form input[type="email"] {
+.search-form input[type="text"] {
   flex-grow: 1;
   padding: 10px 15px;
   border: 1px solid var(--light-lavender);
@@ -283,30 +283,46 @@ body {
   background-color: var(--cloud-gray);
 }
 
-.blockbtn, .unblockbtn {
-  padding: 8px 20px;
-  background-color: var(--slate-gray);
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
+.editForm {
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+  padding: 10px;
+  border-radius: 8px;
 }
 
-.blockbtn:hover, .unblockbtn:hover {
-  background-color: #2e7d32;
-}
-.report-btn {
-  float: right;
-  padding: 8px 20px;
-  background-color: var(--primary-yellow);
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 24px;
+.editForm label {
+      text-align: left;
+  font-weight: bold;
+  color: var(--slate-gray);
+  margin-bottom: 5px;
 }
 
-.reportbtn:hover {
-  background-color: #2e7d32;
+.editForm input[type="text"],
+.editForm select,
+.editForm textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--light-lavender);
+  border-radius: 5px;
+  background-color: var(--cloud-gray);
+  font-size: 0.9rem;
 }
+
+.editForm button {
+  background-color: var(--sage-green);
+  color: var(--snow-white);
+  padding: 10px 20px;
+  border: none;
+  width: 100%;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.editForm button:hover {
+  background-color: #8fb89f;
+}
+

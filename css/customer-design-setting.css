@@ -1,148 +1,234 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+:root {
+  --floral-rose: #e89cae;
+  --sage-green: #a8cbb7;
+  --snow-white: #ffffff;
+  --cloud-gray: #f0f0f0;
+  --slate-gray: #6e7d7a;
+  --rich-purple: #6a4e77;
+  --light-lavender: #e9ddf0;
+  --soft-shadow: rgba(106, 78, 119, 0.1);
 }
 
+/* Reset and base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: all 0.3s ease;
+}
+
+body, html, .main-container {
+  height: 100%;
+  background: var(--cloud-gray);
+}
+
+/* Main container and wrapper */
 .main-container {
-    display: flex;
-    min-height: 100vh;
-    width: 100%;
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
 }
 
 .content-wrapper {
     margin-left: 250px;
-    flex-grow: 1;
-    padding: 20px;
-    background-color: #f9f9f9;
-    overflow-x: auto;
-}
-.all{
-    padding: 20px;
-    margin: auto;
+  flex-grow: 1;
+  padding: 20px 40px;
+  background-color: var(--cloud-gray);
+  overflow-x: auto;
 }
 
+/* Centering main content */
+.all {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* Title */
 .settings-title {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    text-align: left;
-    color: #d32f2f;
+  font-size: 2.5rem;
+  color: var(--rich-purple);
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
+/* Panel */
 .settings-panel {
-    background-color: #f9f9f9;
-    padding: 25px;
-    border-radius: 10px;
-    border: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
 }
 
-/* Section Styling */
+/* Each section as a card */
 .settings-section {
-    margin-bottom: 2.5rem;
+  background: var(--light-lavender);
+  padding: 30px 35px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
+/* Section titles */
 .section-title {
-    font-size: 1.5rem;
-    color: #d32f2f;
-    margin-bottom: 1rem;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 0.5rem;
+  font-size: 1.8rem;
+  color: var(--rich-purple);
+  font-weight: 600;
+  margin-bottom: 25px;
+  border-bottom: 2px solid var(--rich-purple);
+  padding-bottom: 8px;
+  letter-spacing: 0.06em;
+  align-self: flex-start;
 }
 
-/* Form Fields */
+/* Form styling with two columns for bigger forms */
 form {
-    display: flex;
-    flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 30px 50px;
+  align-items: start;
 }
 
+/* Labels */
 label {
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: #555;
-}
-input[type="color"] {
-    padding: 0.6rem;
-    font-size: 1rem;
-    margin-bottom: 1.2rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    height: 10vh;
-    width: 100%;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--slate-gray);
+  display: block;
+  margin-bottom: 8px;
 }
 
+/* Inputs */
+input[type="color"],
 input[type="text"],
 input[type="password"],
 input[type="file"] {
-    padding: 0.6rem;
-    font-size: 1rem;
-    margin-bottom: 1.2rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 1rem;
+  border-radius: 12px;
+  border: 2px solid var(--sage-green);
+  background-color: var(--snow-white);
+  color: var(--slate-gray);
+  cursor: pointer;
 }
 
-/* Buttons */
+input[type="color"] {
+  height: 55px;
+  padding: 0;
+  cursor: pointer;
+}
+
+input[type="file"] {
+  cursor: pointer;
+}
+
+/* On focus */
+input[type="color"]:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="file"]:focus {
+  outline: none;
+  border-color: var(--floral-rose);
+  box-shadow: 0 0 8px var(--floral-rose);
+}
+
+/* Buttons in forms */
 button {
-    padding: 0.6rem 1.2rem;
-    font-size: 1rem;
-    background-color: #388e3c;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: fit-content;
-    margin-bottom: 1rem;
-    transition: background-color 0.3s ease;
+  grid-column: 1 / -1;
+  max-width: 180px;
+  padding: 12px 25px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  background-color: var(--rich-purple);
+  color: var(--snow-white);
+  align-self: start;
+  transition: background 0.4s ease;
 }
 
 button:hover {
-    background-color: #2e7d32;
+  background-color: var(--floral-rose);
 }
 
+/* Reset Button */
 .resetBtn {
-    padding: 0.6rem 1.2rem;
-    font-size: 1rem;
-    background-color: #d32f2f;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: fit-content;
-    margin-bottom: 1rem;
-    transition: background-color 0.3s ease;
+  background-color: var(--sage-green);
+
 }
 
 .resetBtn:hover {
-    background-color: #c62828;
+  background-color: var(--slate-gray);
+
 }
 
-
+/* Button group */
 .button-group {
-    display: flex;
-    gap: 1rem;
+  display: flex;
+  gap: 20px;
+  grid-column: 1 / -1;
 }
 
-/* Preview Images */
+/* Preview container styling */
 .preview-container {
-    text-align: center;
-    margin-bottom: 1.2rem;
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
 }
 
 .preview-container img {
-    max-width: 100px;
-    max-height: 100px;
-    margin-bottom: 0.5rem;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+  border-radius: 20px;
+  max-width: 120px;
+  max-height: 120px;
+  box-shadow: 0 6px 15px var(--soft-shadow);
+  object-fit: contain;
+  border: 2px solid var(--floral-rose);
 }
 
+/* Note text */
 .note {
-    font-size: 0.9rem;
-    color: #666;
+  font-size: 0.85rem;
+  color: var(--slate-gray);
+  font-style: italic;
+  text-align: center;
 }
 
-/* Image Upload Block */
+/* Specific tweaks for image upload blocks */
 .image-upload {
-    margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Admin Authentication form tweaks */
+.auth-section form {
+  grid-template-columns: 1fr;
+}
+
+.auth-section label {
+  margin-bottom: 12px;
+}
+
+.auth-section input {
+  max-width: 320px;
+  padding: 14px 18px;
+  font-size: 1.1rem;
+}
+
+/* Responsive tweaks */
+@media (max-width: 720px) {
+  form {
+    grid-template-columns: 1fr;
+  }
+  button {
+    max-width: 100%;
+  }
 }

@@ -150,7 +150,7 @@ mysqli_close($conn);
     <!-- Account Table and Bulk Delete -->
     <form method="POST">
     <button type="submit" name="delete_selected" class="deletebtn">Delete Selected</button>
-        <table border="1" cellspacing="0" cellpadding="10" class="viewTable">
+        <table  cellspacing="0" cellpadding="10" class="viewTable">
             <tr>
                 <th><input type="checkbox" onclick="toggleSelectAll(this)"></th>
                 <th>Username</th>
