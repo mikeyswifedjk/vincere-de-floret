@@ -116,7 +116,7 @@ if ($resultSettings->num_rows > 0) {
     <link rel="icon" type="image/png" href="../assets/logo/logo2.png"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link rel="stylesheet" href="../css/cart.css" />
-    <title>CART</title>
+    <title>Cart Items</title>
     <style>
         *{
         color: <?php echo $fontColor; ?>;
