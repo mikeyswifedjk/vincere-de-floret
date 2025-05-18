@@ -66,8 +66,8 @@ if ($resultSettings->num_rows > 0) {
   <!-- LOGIN | SIGN UP -->
   <div class="header-right">
     <nav class="nav-right">
-      <a href="login.php" class="auth-link">LOGIN</a>
-      <a href="register.php" class="auth-link">SIGN UP </a>
+      <a href="login.php" class="auth-link">Login</a>
+      <a href="register.php" class="auth-link">SignUp</a>
     </nav>
   </div>
 </header>
@@ -88,7 +88,7 @@ if ($resultSettings->num_rows > 0) {
 
 <!-- Categories Section -->
 <section class="content-categories">
-  <div class="categories-title"><p>CATEGORIES</p></div>
+  <div class="categories-title"><p>Categories</p></div>
   <div class="containers-category">
     <?php
       $categoryQuery = "SELECT * FROM category";
@@ -107,7 +107,7 @@ if ($resultSettings->num_rows > 0) {
 
 <!-- Best Selling Items -->
 <section class="daily-discover-content">
-  <div class="daily-discover-title"><h3>BEST SELLING ITEMS</h3></div>
+  <div class="daily-discover-title"><h3>Best Selling Items</h3></div>
   <div class="daily-discover-container">
     <div class="grid-items">
       <?php
@@ -128,7 +128,7 @@ if ($resultSettings->num_rows > 0) {
             <img src="../img/<?= $row['image'] ?>" alt="<?= $row['name'] ?>" />
             <div class="discover-description"><span><?= $row['name'] ?></span></div>
             <div class="discover-price"><p>₱<?= number_format($row['price'], 2) ?></p></div>
-            <div class="shopnow-button"><p>SHOP NOW</p></div>
+            <div class="shopnow-button"><p>Shop Now</p></div>
           </div>
         </a>
       <?php endwhile; ?>
@@ -138,7 +138,7 @@ if ($resultSettings->num_rows > 0) {
 
 <!-- Product Grid -->
 <section class="daily-discover-content" id="product">
-  <div class="daily-discover-title"><h3>PACKAGE BUNDLE</h3></div>
+  <div class="daily-discover-title"><h3>Package Bundle</h3></div>
   <div class="daily-discover-container">
     <div class="grid-items">
       <?php
@@ -156,7 +156,7 @@ if ($resultSettings->num_rows > 0) {
             <img src="../img/<?= $product['image'] ?>" alt="<?= $product['name'] ?>" />
             <div class="discover-description"><span><?= $product['name'] ?></span></div>
             <div class="discover-price"><p>₱<?= number_format($product['price'], 2) ?></p></div>
-            <div class="shopnow-button"><p>SHOP NOW</p></div>
+            <div class="shopnow-button"><p>Shop Now</p></div>
           </div>
         </a>
       <?php endwhile; ?>
