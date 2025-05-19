@@ -155,11 +155,10 @@ if ($conn) {
 
                 <div class="imageProd">
                     <img src="<?= htmlspecialchars($existingImage); ?>" class="profile-image" id="imagePreview" alt="Image Preview">
-                    <span class="profile"> Profile Picture </span>
                 </div>
 
                 <input type="file" class=".profile-image" id="newImg" name="newImg" onchange="previewImage(this);">
-                <input class="save buttonProduct" type="submit" name="changeInfo" value="Save">
+                <input class="save btnProduct" style="width: 100%; background-color: #8fb89f; color: var(--snow-white); padding: 20px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 1rem;" type="submit" name="changeInfo" value="Save" onmouseover="this.style.backgroundColor='#6e7d7a'" onmouseout="this.style.backgroundColor='#8fb89f'">
             </form>
         </div>
     </div>    
