@@ -103,7 +103,7 @@ if (isset($_POST['logout'])) {
         <i class="fa-solid fa-truck-fast"></i>
         <span>Shipping</span>
       </a>
-      <a href="crud-discount.php" class="nav-btn">
+      <a href="crud-discounts.php" class="nav-btn">
         <i class="fa-solid fa-tag"></i>
         <span>Discount</span>
       </a>

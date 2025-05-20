@@ -298,15 +298,17 @@ body {
 }
 .report-btn {
   float: right;
-  padding: 8px 20px;
-  background-color: var(--primary-yellow);
-  color: white;
+  padding: 10px 25px;
+  background-color: var(--deep-plum);
+  color: var(--light-beige);
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 24px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.reportbtn:hover {
-  background-color: #2e7d32;
+.report-btn:hover {
+  background-color: #4c1c3f;
+  transform: translateY(-2px);
 }

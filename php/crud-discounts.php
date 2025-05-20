@@ -113,7 +113,7 @@ function readDiscounts($dbConnection) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Discounts</title>
     <link rel="icon" type="image/png" href="img/logo.png" />
-    <link rel="stylesheet" type="text/css" href="css/crud-discounts.css">
+    <link rel="stylesheet" type="text/css" href="../css/crud-discounts.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -128,9 +128,14 @@ function readDiscounts($dbConnection) {
     </script>
 </head>
 <body>
+    <div class="main-container">
+
+    <div class="content-wrapper">
+
+    <div class="all">
 <h1 class="discount-title">PROMO &amp DISCOUNT</h1>
     <div class="container">
-        <form method="POST" action="">
+        <form method="POST" action="" class="discount-form">
             <label for="amount">Amount:</label>
             <input type="number" step="0.01" name="amount" required><br>
             <label for="qty">Quantity:</label>
@@ -138,6 +143,7 @@ function readDiscounts($dbConnection) {
             <button type="submit" class="btnAll" name="create_discount">Create Discount</button>
         </form>
 
+        <div class="discount-panel">
         <h2> UPDATE PROMO &amp DISCOUNT</h2>
         <form method="POST" action="">
             <input type="hidden" name="id" id="update_id">
@@ -147,7 +153,9 @@ function readDiscounts($dbConnection) {
             <input type="number" name="qty" id="update_qty" required><br>
             <button type="submit" class="btnAll" name="update_discount">Update Discount</button>
         </form>
+        </div>
 
+        <div class="discount-panel">
         <h2>PROMO &amp DISCOUNT LIST</h2>
         <form method="POST" action="">
             <table>
@@ -165,8 +173,11 @@ function readDiscounts($dbConnection) {
             </table>
             <button type="submit" class="btnAll" name="delete_discounts">Delete Selected Discounts</button>
         </form>
+        </div>
     </div>
-
+</div>
+</div>
+</div>
     <?php mysqli_close($dbConnection); ?>
 </body>
 </html>

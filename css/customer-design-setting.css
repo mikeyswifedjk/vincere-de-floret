@@ -47,12 +47,9 @@ body, html, .main-container {
 
 /* Title */
 .settings-title {
-  font-size: 2.5rem;
+  font-size: 1.4rem;
   color: var(--rich-purple);
   font-weight: 700;
-  letter-spacing: 1.2px;
-  text-align: center;
-  margin-bottom: 30px;
 }
 
 /* Panel */
@@ -70,6 +67,7 @@ body, html, .main-container {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  align-items: flex-start;
 }
 
 /* Section titles */
@@ -81,7 +79,6 @@ body, html, .main-container {
   border-bottom: 2px solid var(--rich-purple);
   padding-bottom: 8px;
   letter-spacing: 0.06em;
-  align-self: flex-start;
 }
 
 /* Form styling with two columns for bigger forms */
