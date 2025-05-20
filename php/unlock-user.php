@@ -99,10 +99,9 @@ mysqli_close($conn);
 <body>
 <div class="main-container">
     <div class="content-wrapper">
-
+<button class="report-btn" onclick="generateReport()">Generate Report</button>
     <div class="all">
         <h1 class="text1">Account Access Management</h1>
-        <button class="report-btn" onclick="generateReport()">Generate Report</button>
 
         <!-- Add New Account Form -->
 <div class="add">

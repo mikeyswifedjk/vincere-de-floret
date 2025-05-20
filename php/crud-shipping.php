@@ -75,7 +75,7 @@ $result = mysqli_query($conn, $searchQuery);
     <link rel="stylesheet" type="text/css" href="../css/crud-shipping.css">
     <title>Shipping Management</title>
 </head>
-<>
+<body>
     <div class="main-container">
 
     <div class="content-wrapper">

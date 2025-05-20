@@ -18,31 +18,33 @@
   background: rgba(113, 62, 36, 0.9); /* earth-brown transparent */
   backdrop-filter: blur(12px);
   border-right: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 30px 20px;
+  padding: 20px 15px;
   box-shadow: 4px 0 15px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
   z-index: 999;
+  overflow: hidden; /* disables scrolling */
 }
 
 /* Admin profile */
 .admin-profile {
   display: flex;
   align-items: center;
-  gap: 15px;
-  margin-bottom: 40px;
+  gap: 12px;
+  margin-bottom: 20px;
   text-decoration: none;
   color: var(--white);
   transition: transform 0.3s ease;
+  flex-shrink: 0;
 }
 
 .admin-profile:hover {
-  transform: translateX(5px);
+  transform: translateX(4px);
 }
 
 .admin-profile img {
-  width: 54px;
-  height: 54px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid var(--primary-yellow);
@@ -50,7 +52,7 @@
 }
 
 .admin-profile span {
-  font-size: 18px;
+  font-size: 15px;
   font-weight: bold;
   white-space: nowrap;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
@@ -60,23 +62,28 @@
 .nav-links {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 10px;
   flex-grow: 1;
+  justify-content: start;
+  flex-wrap: nowrap;
+  overflow: hidden; /* prevent overflow */
 }
 
 .nav-btn {
   display: flex;
   align-items: center;
-  gap: 15px;
-  padding: 14px 20px;
+  gap: 12px;
+  padding: 10px 14px;
   background-color: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
+  border-radius: 8px;
   color: var(--light-beige);
   font-weight: 500;
   position: relative;
   text-decoration: none;
-  transition: all 0.4s ease;
+  transition: all 0.3s ease;
   overflow: hidden;
+  font-size: 14px;
+  flex-shrink: 0;
 }
 
 .nav-btn::before {
@@ -85,7 +92,7 @@
   left: 0;
   top: 0;
   height: 100%;
-  width: 5px;
+  width: 4px;
   background-color: var(--primary-yellow);
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -96,12 +103,12 @@
 }
 
 .nav-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  transform: translateX(5px);
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateX(4px);
 }
 
 .nav-btn i {
-  font-size: 20px;
+  font-size: 16px;
   color: var(--dusty-blue);
 }
 
@@ -112,7 +119,7 @@
 }
 
 .logout:hover {
-  background: #3c1634; /* darker shade of deep plum */
+  background: #3c1634;
 }
 
 .logout i {

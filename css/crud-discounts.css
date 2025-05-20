@@ -1,0 +1,173 @@
+
+:root {
+  --floral-rose: #e89cae;
+  --sage-green: #a8cbb7;
+  --snow-white: #ffffff;
+  --cloud-gray: #f0f0f0;
+  --slate-gray: #6e7d7a;
+  --rich-purple: #6a4e77;
+  --light-lavender: #e9ddf0;
+  --primary-yellow: #f1e217;
+  --soft-shadow: rgba(106, 78, 119, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--cloud-gray);
+  color: var(--slate-gray);
+}
+
+.main-container {
+    display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.content-wrapper {
+    margin-left: 250px;
+  flex-grow: 1;
+  padding: 20px 40px;
+  background-color: var(--cloud-gray);
+  overflow-x: auto;
+}
+
+.discount-form > label {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--rich-purple);
+}
+
+.discount-form > input[type=number] {
+  width: 100%;
+  padding: 10px;
+  font-size: 1.2em;
+  border: 1px solid var(--slate-gray);
+  border-radius: 5px;
+}
+
+.discount-form > button {
+  width: 100%;
+  background-color: var(--sage-green);
+  color: var(--snow-white);
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+.discount-title {
+  font-size: 1.4rem;
+  color: var(--rich-purple);
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.discount-panel {
+  background-color: var(--snow-white);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px var(--soft-shadow);
+  padding: 25px 30px;
+  margin-bottom: 30px;
+}
+
+.discount-panel h2 {
+  font-size: 20px;
+  color: var(--rich-purple);
+  margin-bottom: 15px;
+}
+
+.discount-panel form label {
+  display: block;
+  font-weight: 600;
+  margin: 10px 0 5px;
+}
+
+.discount-panel input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--slate-gray);
+  border-radius: 6px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  background-color: var(--cloud-gray);
+}
+
+.discount-panel table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.discount-panel table th,
+.discount-panel table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--cloud-gray);
+  text-align: left;
+}
+
+.discount-panel table th {
+  background-color: var(--light-lavender);
+  color: var(--rich-purple);
+  font-size: 14px;
+}
+
+.discount-panel table tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.discount-panel .edit-discount {
+  background-color: var(--sage-green);
+  border: none;
+  color: var(--snow-white);
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.discount-panel .edit-discount:hover {
+  background-color: #88b19d;
+}
+
+.btnAll {
+  margin-top: 10px;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--rich-purple);
+  color: var(--snow-white);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+}
+
+.btnAll:hover {
+  background-color: #543a60;
+}
+
+.notification {
+  padding: 10px 14px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  width: 100%;
+  max-width: 600px;
+}
+
+.notification.success {
+  background-color: #a8cbb7;
+  color: #2e5245;
+}
+
+.notification.error {
+  background-color: #f8d7da;
+  color: #842029;
+}
