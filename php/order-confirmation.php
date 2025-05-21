@@ -62,6 +62,14 @@ $orderDetails = $_SESSION['order_details'];
     <title>Order Confirmation</title>
     <link rel="stylesheet" type="text/css" href="../css/order-confirmation.css">
 </head>
+    <style>
+        *{
+        color: <?php echo $fontColor; ?>;
+        }
+        body {
+        background-color: <?php echo $bgColor; ?>;
+        }
+    </style>
 <body>
     <header class="header">
         <a href="customer-dashboard.php?user=<?= htmlspecialchars($userName) ?>" class="container-header">

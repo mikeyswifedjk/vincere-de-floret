@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <hr>
 
   <h2>Live Preview</h2>
-  <div id="preview" style="border:1px solid #ccc; padding:10px; min-height:100px;"></div>
+  <div id="preview""></div>
 
   <script>
     CKEDITOR.replace('letter_content', {

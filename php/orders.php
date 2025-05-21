@@ -44,6 +44,8 @@ include('admin-nav.php');
                 <th>Phone</th>
                 <th>Address</th>
                 <th>Payment Method</th>
+                <th>Shipping Fee</th>
+                <th>Discount Code</th>
                 <th>Total Amount</th>
                 <th>Amount Paid</th>
                 <th>Order Date</th>
@@ -62,6 +64,18 @@ include('admin-nav.php');
 
             if ($ordersResult) {
                 while ($order = mysqli_fetch_assoc($ordersResult)) {
+                    // Fetch the fee from the shipping table based on region_id
+                    $regionId = $order['region_id'];
+                    $shippingFee = 'N/A';
+
+                    $shippingQuery = "SELECT fee FROM shipping WHERE id = '$regionId'";
+                    $shippingResult = mysqli_query($conn, $shippingQuery);
+
+                    if ($shippingResult && mysqli_num_rows($shippingResult) > 0) {
+                        $shippingData = mysqli_fetch_assoc($shippingResult);
+                        $shippingFee = "₱" . $shippingData['fee'];
+                    }
+
                     echo "<tr>";
                     echo "<td>" . $order['id'] . "</td>";
                     echo "<td>" . $order['user_name'] . "</td>";
@@ -69,6 +83,8 @@ include('admin-nav.php');
                     echo "<td>" . $order['phone'] . "</td>";
                     echo "<td>" . $order['address'] . "</td>";
                     echo "<td>" . $order['payment_method'] . "</td>";
+                    echo "<td>" . $shippingFee . "</td>";
+                    echo "<td>" . $order['discount_code'] . "</td>";
                     echo "<td>₱" . $order['total_amount'] . "</td>";
                     echo "<td>₱" . $order['total_amount'] . "</td>";
                     echo "<td>" . $order['order_date'] . "</td>";
@@ -78,7 +94,6 @@ include('admin-nav.php');
             } else {
                 echo "<tr><td colspan='10'>No orders found</td></tr>";
             }
-
             mysqli_free_result($ordersResult);
 
             ?>

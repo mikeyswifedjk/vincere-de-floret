@@ -12,12 +12,12 @@ $dateTime = date("F j, Y - g:i A");
 $adminEmail = 'admin@gmail.com';
 $adminUsername = 'Unknown Admin';
 
-$stmt = mysqli_prepare($conn, "SELECT username FROM admin WHERE email = ?");
+$stmt = mysqli_prepare($conn, "SELECT fullname FROM admin WHERE email = ?");
 mysqli_stmt_bind_param($stmt, "s", $adminEmail);
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 if ($row = mysqli_fetch_assoc($result)) {
-    $adminUsername = $row['username'];
+    $adminUsername = $row['fullname'];
 }
 mysqli_stmt_close($stmt);
 
@@ -53,6 +53,8 @@ $html = '
             <th>Phone</th>
             <th>Address</th>
             <th>Payment Method</th>
+            <th>Shipping Fee</th>
+            <th>Discount Code</th>
             <th>Total Amount</th>
             <th>Order Date</th>
         </tr>
@@ -60,7 +62,10 @@ $html = '
     <tbody>';
 
 // Fetch orders
-$orderQuery = "SELECT * FROM orders WHERE order_date BETWEEN '$startDate 00:00:00' AND '$endDate 23:59:59'";
+$orderQuery = "SELECT o.*, r.fee 
+               FROM orders o 
+               LEFT JOIN shipping r ON o.region_id = r.id 
+               WHERE o.order_date BETWEEN '$startDate 00:00:00' AND '$endDate 23:59:59'";
 $orderResult = mysqli_query($conn, $orderQuery);
 while ($row = mysqli_fetch_assoc($orderResult)) {
     $html .= '
@@ -71,6 +76,8 @@ while ($row = mysqli_fetch_assoc($orderResult)) {
             <td>' . htmlspecialchars($row['phone']) . '</td>
             <td>' . htmlspecialchars($row['address']) . '</td>
             <td>' . htmlspecialchars($row['payment_method']) . '</td>
+            <td>' . htmlspecialchars($row['fee']) . '</td>
+            <td>' . htmlspecialchars($row['discount_code']) . '</td>
             <td>' . number_format($row['total_amount'], 2) . '</td>
             <td>' . $row['order_date'] . '</td>
         </tr>';

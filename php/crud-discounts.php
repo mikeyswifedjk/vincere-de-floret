@@ -29,7 +29,7 @@ if (isset($_POST['create_discount'])) {
     mysqli_stmt_execute($stmt);
 
     if ($stmt) {
-        echo "<div class='notification success'>Discount created successfully with code: $code</div>";
+        echo "<script>alert('Discount created successfully with code: " . htmlspecialchars($code, ENT_QUOTES) . "');</script>";
     } else {
         echo "<div class='notification error'>Error: " . mysqli_error($dbConnection) . "</div>";
     }
@@ -94,7 +94,6 @@ function readDiscounts($dbConnection) {
             echo "<td>" . $row['code'] . "</td>";
             echo "<td>₱" . number_format($row['amount'], 2) . "</td>";
             echo "<td>" . $row['qty'] . "</td>";
-            echo "<td>" . $row['usage_count'] . "</td>";
             echo "<td>" . $row['status'] . "</td>";
             echo "<td><button type='button' class='edit-discount' data-id='" . $row['id'] . "' data-amount='" . $row['amount'] . "' data-qty='" . $row['qty'] . "'> <i class='fa-solid fa-pen-to-square'></i> </button></td>";
             echo "</tr>";
@@ -165,19 +164,17 @@ function readDiscounts($dbConnection) {
                     <th>Code</th>
                     <th>Amount</th>
                     <th>Quantity</th>
-                    <th>Usage Count</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
                 <?php readDiscounts($dbConnection); ?>
             </table>
-            <button type="submit" class="btnAll" name="delete_discounts">Delete Selected Discounts</button>
+            <button type="submit" class="btnAll" name="delete_discounts">Delete Discounts</button>
         </form>
         </div>
     </div>
 </div>
 </div>
 </div>
-    <?php mysqli_close($dbConnection); ?>
 </body>
 </html>
