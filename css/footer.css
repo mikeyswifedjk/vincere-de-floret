@@ -92,7 +92,7 @@
 
 /* Logos */
 .footer-project img {
-  width: 80px;
+  width: 150px;
   margin: 8px;
   filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.1));
   transition: transform 0.3s ease, filter 0.3s ease;
