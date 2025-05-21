@@ -21,7 +21,7 @@ body {
     color: var(--earth-brown);
     line-height: 1.6;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     align-items: center;
     min-height: 100vh;
 }
@@ -42,7 +42,6 @@ form {
     background-color: var(--white);
     padding: 30px;
     border-radius: 20px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -53,11 +52,9 @@ textarea {
     width: 100%;
     height: 300px;
     padding: 15px;
-    border: 2px solid var(--lavender-gray);
     border-radius: 12px;
     resize: vertical;
     font-size: 1rem;
-    background-color: var(--light-beige);
 }
 
 /* Submit Button */

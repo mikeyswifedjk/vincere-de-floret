@@ -107,14 +107,14 @@ body {
   display: none;
   position: absolute;
   right: 10px;
-  background-color: var(--lavender-gray);
+  background-color: var(--white);
   min-width: 160px;
   box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
   z-index: 1;
 }
 
 .dropdown-content a {
-  color: var(--white);
+  color: var(--earth-brown);
   padding: 12px 16px;
   display: block;
   text-decoration: none;
@@ -222,34 +222,44 @@ body {
     margin-top: 15px;
 }
 
-.payment-method label {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100vw;
-    gap: 10px;
-    background-color: var(--lavender-gray);
-    padding: 10px 16px;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: 0.3s ease;
-    border: 2px solid var(--deep-plum);
+.payment-options label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+  background-color: var(--lavender-gray);
+  padding: 10px 16px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: 0.1s ease;
+  border: 2px solid var(--deep-plum);
 }
 
-.payment-method label:hover {
-    background-color: var(--dusty-blue);
+.payment-options input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
 }
+
+.payment-options input[type="radio"]:checked + img {
+  outline: 3px solid var(--primary-yellow);
+  border-radius: 12px;
+}
+
+/* Optional: Change whole label background on selection */
+.payment-options label:has(input[type="radio"]:checked) {
+  background-color: var(--primary-yellow);
+  border-color: var(--primary-yellow);
+}
+
 
 .payment-method img {
     object-fit: contain;
     width: 80px;
     height: 50px;
 }
-
-.payment-method input[type="radio"] {
-    display: none;
-}
-
 /* Order Summary */
 .order-summary-details {
     padding: 20px;
