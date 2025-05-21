@@ -57,18 +57,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <script src="https://cdn.ckeditor.com/4.21.0/standard-all/ckeditor.js"></script>
 </head>
 <body>
-  <h1>Create Your Digital Letter</h1>
+  <div class="all-container">
+  <div class="letter-container">
+      <div class="header">
+    <h1>Create Your Digital Letter</h1>
+  </div>
 
-  <form method="post" action="custom-letter.php">
-    <textarea name="letter_content" id="letter_content"></textarea><br><br>
-    <button type="submit">Save Letter & Go Back</button>
-  </form>
+  <div class="form-container">
+    <form method="post" action="custom-letter.php">
+      <textarea name="letter_content" id="letter_content"></textarea><br><br>
+      <button type="submit">Save Letter & Go Back</button>
+    </form>
+  </div>
+  </div>
 
-  <hr>
-
-  <h2>Live Preview</h2>
-  <div id="preview""></div>
-
+  <div class="preview-container">
+    <h2>Live Preview</h2>
+    <div id="preview"></div>
+  </div>
+</div>
   <script>
     CKEDITOR.replace('letter_content', {
       extraPlugins: 'emoji',

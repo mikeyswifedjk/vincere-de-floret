@@ -275,8 +275,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <label for="address">Complete Address:</label>
           <input type="text" name="address" id="address" required />
 
-          <label for="region">Region:</label>
-            <select name="region" id="region" required>
+          <label for="region" style="display: block; margin-bottom: 5px;">Region:</label>
+            <select name="region" id="region" required style="width: 100%; padding: 12px 16px; border: 2px solid #cbb4d4; border-radius: 10px;">
               <option value="" disabled selected>Select a region</option>
               <?php foreach ($regions as $region) : ?>
                 <option value="<?= $region['id'] ?>"><?= $region['address'] ?> (₱<?= $region['fee'] ?>)</option>
@@ -288,32 +288,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <div class="discount-promo">
         <h2>PROMO &amp; DISCOUNT </h2>
         <div class="discount-section">
-          <select name="discount_code" id="discount_code">
+          <select name="discount_code" id="discount_code" style="width: 100%; padding: 12px 16px; border: 2px solid #cbb4d4; border-radius:10px;">
             <option value="">None</option>
-              <?php foreach ($discounts as $discount) : ?>
-                <option value="<?= $discount['code'] ?>"><?= $discount['code'] ?> (₱<?= $discount['amount'] ?>)</option>
-              <?php endforeach; ?>
+            <?php foreach ($discounts as $discount) : ?>
+              <option value="<?= $discount['code'] ?>"><?= $discount['code'] ?> (₱<?= $discount['amount'] ?>)</option>
+            <?php endforeach; ?>
           </select>
         </div>
       </div>
-
+      
       <div class="payment-method">
-        <h2>PAYMENT METHOD</h2>
-        <div class="payment-options">
-          <label>
-            <input type="radio" name="payment_method" value="COD" required />
-            <img src="../assets/shipping/cod.png" alt="COD" />
-          </label>
-          <label>
-            <input type="radio" name="payment_method" value="BDO" />
-            <img src="../assets/shipping/bdo.png" alt="BDO" />
-          </label>
-          <label>
-            <input type="radio" name="payment_method" value="GCash" />
-            <img src="../assets/shipping/gcash.png" alt="GCash" />
-          </label>
-        </div>
-      </div>
+  <h2>PAYMENT METHOD</h2>
+  <div class="payment-options">
+    <label>
+      <input type="radio" name="payment_method" value="COD" required />
+      <img src="../assets/shipping/cod.png" alt="COD" />
+    </label>
+    <label>
+      <input type="radio" name="payment_method" value="BDO" />
+      <img src="../assets/shipping/bdo.png" alt="BDO" />
+    </label>
+    <label>
+      <input type="radio" name="payment_method" value="GCash" />
+      <img src="../assets/shipping/gcash.png" alt="GCash" />
+    </label>
+  </div>
+</div>
+
 
       <div class="order-summary">
         <h2>ORDER SUMMARY</h2>
