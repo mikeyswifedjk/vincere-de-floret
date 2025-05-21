@@ -22,7 +22,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--deep-plum);
   padding: 15px 30px;
   color: var(--white);
 }

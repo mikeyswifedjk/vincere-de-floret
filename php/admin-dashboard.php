@@ -79,6 +79,18 @@ include('admin-nav.php');
           <h2>Users</h2>
           <p><?php echo $totalUsers; ?></p>
         </div>
+
+        <?php
+          // Fetch total products
+          $selectTotalProductsQuery = "SELECT COUNT(id) AS total_products FROM vincere_de_floret.product";
+          $totalProductsResult = mysqli_query($dbConnectionOrders, $selectTotalProductsQuery);
+          $totalProductsData = mysqli_fetch_assoc($totalProductsResult);
+          $totalProducts = isset($totalProductsData['total_products']) ? $totalProductsData['total_products'] : 0;
+        ?>
+        <div class="dashboard-item">
+          <h2>Products</h2>
+          <p><?php echo $totalProducts; ?></p>
+        </div>
       </div>
 
       <?php
@@ -95,7 +107,7 @@ include('admin-nav.php');
       ?>
       <div class="container-items">
         <div class="selling-item">
-          <h1>Best Selling Items</h1>
+          <h1>Top Picks</h1>
           <div class="rows">
             <?php while ($row = mysqli_fetch_assoc($bestSellingItemsResult)) : ?>
               <div class="items">
@@ -120,7 +132,7 @@ include('admin-nav.php');
           $slowSellingItemsResult = mysqli_query($dbConnectionOrders, $selectSlowSellingItemsQuery);
         ?>
         <div class="selling-item">
-          <h1>Slow Selling Items</h1>
+          <h1>Less Popular</h1>
           <div class="rows">
             <?php while ($row = mysqli_fetch_assoc($slowSellingItemsResult)) : ?>
               <div class="items">

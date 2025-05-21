@@ -72,13 +72,13 @@ if (isset($_POST["submit"])) {
 
     <div class="content-wrapper">
     <div class="all">
-    <!-- Tab Navigation -->
+    <!-- Tab Navigation
     <div class="tab-container">
         <div class="product-tab"><a href="add-product.php">Bundle</a></div>
         <div class="flower-tab"><a href="add-flowers.php">Flowers</a></div>
         <div class="add-ons-tab"><a href="add-addons.php">Add-Ons</a></div>
         <div class="pots-tab"><a href="add-pots.php">Pots</a></div>
-    </div>
+    </div> -->
 
     <!-- Add Product Section -->
     <h1 class="text1">Bundle Deal</h1>
@@ -213,7 +213,7 @@ if (isset($_POST["submit"])) {
         if (file) {
             reader.readAsDataURL(file);
         } else {
-            preview.src = "no-image.webp";
+            preview.src = "../assets/no-image.webp";
         }
     }
 </script>

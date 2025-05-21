@@ -311,8 +311,8 @@ function handleImageUpload($file, $column, $existingPath) {
 
         function clearColors() {
             // Set default values for background and font colors
-            document.getElementById('background_color').value = '#fff8f0';
-            document.getElementById('font_color').value = '#333';
+            document.getElementById('background_color').value = '#f5f0e1';
+            document.getElementById('font_color').value = '#713e24';
         }
     </script>
 </body>

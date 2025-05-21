@@ -66,7 +66,7 @@ if ($row = $verifyResult->fetch_assoc()) {
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Customer Dashboard - Sunny Bloom</title>
+  <title>Customer Dashboard</title>
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="../css/customer-dashboard.css" />
@@ -181,7 +181,7 @@ if ($row = $verifyResult->fetch_assoc()) {
 
   <!-- Best Selling Items Section -->
   <section class="daily-discover-content">
-    <div class="daily-discover-title"><h3>BEST SELLING ITEMS</h3></div>
+    <div class="daily-discover-title"><h3>Top Picks</h3></div>
     <div class="daily-discover-container">
       <div class="grid-items">
         <?php
@@ -230,7 +230,7 @@ if ($row = $verifyResult->fetch_assoc()) {
 
   <!-- Product Grid Section -->
   <section class="daily-discover-content" id="product">
-    <div class="daily-discover-title"><h3>PACKAGE BUNDLE</h3></div>
+    <div class="daily-discover-title"><h3>Bundle Deals</h3></div>
     <div class="daily-discover-container">
       <div class="grid-items">
         <?php

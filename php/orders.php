@@ -22,8 +22,7 @@ include('admin-nav.php');
 
     <div class="content-wrapper">
     <div class="all">
-        <h1 class="text1">Orders History</h1>
-
+        <h1 class="text1">Order Management</h1>
         <!-- Report Form -->
         <form method="GET" action="orders-report.php" class="date-report">
             <label for="start-date" class="text5">Start Date:</label>
@@ -34,7 +33,9 @@ include('admin-nav.php');
             
             <input class="search-button" type="submit" name="search-btn" id="search-btn" value="Report">
         </form>
+
         <!-- Display Orders Table -->
+        <br><h1 class="text1">Orders History</h1>
         <table cellspacing="0" cellpadding="10" class="viewTable">
             <tr>
                 <th>ID</th>
@@ -83,7 +84,7 @@ include('admin-nav.php');
             ?>
         </table>
 
-        <h1 class="text1">Order Items</h1>
+        <br><h1 class="text1">Order Items</h1>
         <!-- Display Order Items Table -->
         <table cellspacing="0" cellpadding="10" class="viewTable">
            

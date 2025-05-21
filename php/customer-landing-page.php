@@ -107,7 +107,7 @@ if ($resultSettings->num_rows > 0) {
 
 <!-- Best Selling Items -->
 <section class="daily-discover-content">
-  <div class="daily-discover-title"><h3>Best Selling Items</h3></div>
+  <div class="daily-discover-title"><h3>Top Picks</h3></div>
   <div class="daily-discover-container">
     <div class="grid-items">
       <?php
@@ -138,7 +138,7 @@ if ($resultSettings->num_rows > 0) {
 
 <!-- Product Grid -->
 <section class="daily-discover-content" id="product">
-  <div class="daily-discover-title"><h3>Package Bundle</h3></div>
+  <div class="daily-discover-title"><h3>Bundle Deals</h3></div>
   <div class="daily-discover-container">
     <div class="grid-items">
       <?php

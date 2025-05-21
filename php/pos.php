@@ -53,6 +53,7 @@ $products = mysqli_query($conn, "SELECT * FROM product WHERE status = 'Available
 
               <label for="payment_method">Payment Method:</label>
               <select name="payment_method" id="payment_method" onchange="toggleCashField()" required>
+                <option value="" disabled selected>Select Category</option>
                 <option value="Cash">Cash</option>
                 <option value="Gcash">Gcash</option>
                 <option value="BDO">BDO</option>
@@ -61,7 +62,7 @@ $products = mysqli_query($conn, "SELECT * FROM product WHERE status = 'Available
               <div id="cashInput">
                 <label>Amount Tendered: ₱</label>
                 <input type="number" id="amountPaid" name="amount_paid" step="0.01" min="0" oninput="computeChange()" required>
-                <p><strong>Change: ₱<span id="changeAmount">0.00</span></strong></p>
+                <br><p><strong>Change: ₱<span id="changeAmount">0.00</span></strong></p>
               </div>
 
               <input type="hidden" name="cart_data" id="cart_data">
