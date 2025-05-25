@@ -107,7 +107,7 @@ if ($resultSettings->num_rows > 0) {
 
 <?php
 $purchasesQuery = "
-  SELECT o.id AS order_id, o.payment_method, oi.product_name, oi.product_image, oi.quantity, oi.price, oi.total_price, o.order_date
+  SELECT o.id AS order_id, o.payment_method, oi.product_name, oi.product_image, oi.quantity, oi.price, oi.total_price, o.order_date, o.custom_letter
   FROM orders o
   JOIN order_items oi ON o.id = oi.order_id
   WHERE o.user_name = ?
