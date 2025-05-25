@@ -44,7 +44,7 @@
                 // SMTP username
                 $mail->Username = 'vinceredefloret@gmail.com';
                 // SMTP password
-                $mail->Password = 'ossm yxeg miiv obzm';
+                $mail->Password = 'ossmyxegmiivobzm';
                 // Enable TLS encryption;
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; 
                 // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
@@ -64,7 +64,7 @@
             }
 
             // Redirect to the verification page.
-            header("Location:http://localhost/vincere_de_floret/php/email-verification.php?email=".$email. "&type=password");
+            header("Location:http://localhost/vincere-de-floret/php/email-verification.php?email=".$email. "&type=password");
         }
     }
 ?>
