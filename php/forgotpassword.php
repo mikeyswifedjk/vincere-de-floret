@@ -1,9 +1,14 @@
 <?php
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;
+    use PHPMailer\PHPMailer\Exception;
   
-    require './PHPMailer/src/PHPMailer.php';
-    require './PHPMailer/src/SMTP.php';
+    require '../php/PHPMailer/src/Exception.php';
+    require '../php/PHPMailer/src/PHPMailer.php';
+    require '../php/PHPMailer/src/SMTP.php';
 
     if (isset($_POST["next"])) {
         $email = $_POST["email"];
