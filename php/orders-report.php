@@ -48,9 +48,11 @@ $html = '
     <thead>
         <tr>
             <th>Order ID</th>
-            <th>User Name</th>
-            <th>Name</th>
-            <th>Phone</th>
+            <th>Users Name</th>
+            <th>Sender Name</th>
+            <th>Sender Phone</th>
+            <th>Receiver Name</th>
+            <th>Receiver Phone</th>
             <th>Address</th>
             <th>Payment Method</th>
             <th>Shipping Fee</th>
@@ -72,8 +74,10 @@ while ($row = mysqli_fetch_assoc($orderResult)) {
         <tr>
             <td>' . $row['id'] . '</td>
             <td>' . htmlspecialchars($row['user_name']) . '</td>
-            <td>' . htmlspecialchars($row['name']) . '</td>
-            <td>' . htmlspecialchars($row['phone']) . '</td>
+            <td>' . htmlspecialchars($row['sender_name']) . '</td>
+            <td>' . htmlspecialchars($row['sender_phone']) . '</td>
+            <td>' . htmlspecialchars($row['receiver_name']) . '</td>
+            <td>' . htmlspecialchars($row['receiver_phone']) . '</td>
             <td>' . htmlspecialchars($row['address']) . '</td>
             <td>' . htmlspecialchars($row['payment_method']) . '</td>
             <td>' . htmlspecialchars($row['fee']) . '</td>
@@ -112,6 +116,63 @@ while ($item = mysqli_fetch_assoc($itemResult)) {
         </tr>';
 }
 $html .= '</tbody></table>';
+
+// POS Orders Summary
+$html .= '<h2>POS Orders Summary</h2>
+<table border="1" cellpadding="4">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Cashier</th>
+            <th>Total Amount</th>
+            <th>Payment Method</th>
+            <th>Order Date</th>
+        </tr>
+    </thead>
+    <tbody>';
+
+$posOrdersResult = mysqli_query($conn, "SELECT * FROM pos_orders WHERE order_date BETWEEN '$startDate 00:00:00' AND '$endDate 23:59:59'");
+while ($pos = mysqli_fetch_assoc($posOrdersResult)) {
+    $html .= '
+        <tr>
+            <td>' . $pos['id'] . '</td>
+            <td>' . htmlspecialchars($pos['cashier_name']) . '</td>
+            <td>' . number_format($pos['total_amount'], 2) . '</td>
+            <td>' . htmlspecialchars($pos['payment_method']) . '</td>
+            <td>' . $pos['order_date'] . '</td>
+        </tr>';
+}
+$html .= '</tbody></table>';
+
+// POS Order Items
+$html .= '<h2>POS Order Items</h2>
+<table border="1" cellpadding="4">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>POS Order ID</th>
+            <th>Product Name</th>
+            <th>Qty</th>
+            <th>Price</th>
+            <th>Total Price</th>
+        </tr>
+    </thead>
+    <tbody>';
+
+$posItemsResult = mysqli_query($conn, "SELECT * FROM pos_order_items");
+while ($item = mysqli_fetch_assoc($posItemsResult)) {
+    $html .= '
+        <tr>
+            <td>' . $item['id'] . '</td>
+            <td>' . $item['pos_order_id'] . '</td>
+            <td>' . htmlspecialchars($item['product_name']) . '</td>
+            <td>' . $item['quantity'] . '</td>
+            <td>' . number_format($item['price'], 2) . '</td>
+            <td>' . number_format($item['total_price'], 2) . '</td>
+        </tr>';
+}
+$html .= '</tbody></table>';
+
 
 $pdf->writeHTML($html);
 $pdf->Output('orders_report.pdf', 'I');

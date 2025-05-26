@@ -54,8 +54,11 @@ while ($row = $discountResult->fetch_assoc()) {
 $selectedItems = isset($_SESSION['selected_items']) ? array_filter(explode(",", $_SESSION['selected_items']), 'is_numeric') : [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = $_POST['name'];
-    $phone = $_POST['phone'];
+    $senderName = $_POST['sender_name'];
+    $senderPhone = $_POST['sender_phone'];
+
+    $receiverName = $_POST['receiver_name'];
+    $receiverPhone = $_POST['receiver_phone'];
     $address = $_POST['address'];
     $regionId = $_POST['region'];
     $discountCode = $_POST['discount_code'];
@@ -96,8 +99,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Session order data
     $_SESSION['order_details'] = [
         'selected_items' => $selectedItems,
-        'name' => $name,
-        'phone' => $phone,
+        'sender_name' => $senderName,
+        'sender_phone' => $senderPhone,
+        'receiver_name' => $receiverName,
+        'receiver_phone' => $receiverPhone,
         'address' => $address,
         'region_id' => $regionId,
         'discount_code' => $discountCode,
@@ -118,8 +123,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $customLetterPath = $_SESSION['custom_letter_path'] ?? null;
 
-    $insertOrder = $conn->prepare("INSERT INTO orders (user_name, name, phone, address, region_id, discount_code, payment_method, total_amount, custom_letter) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $insertOrder->bind_param("sssssssss", $userName, $name, $phone, $address, $regionId, $discountCode, $paymentMethod, $totalAmount, $customLetterPath);
+    $insertOrder = $conn->prepare("INSERT INTO orders 
+        (user_name, sender_name, sender_phone, receiver_name, receiver_phone, address, region_id, discount_code, payment_method, total_amount, custom_letter) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+    $insertOrder->bind_param("ssssssssssd", 
+        $userName, $senderName, $senderPhone, $receiverName, $receiverPhone, $address, 
+        $regionId, $discountCode, $paymentMethod, $totalAmount, $customLetterPath
+    );
     $insertOrder->execute();
     $orderId = $conn->insert_id;
 
@@ -266,12 +277,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <div class="shipping-details">
         <h2>SHIPPING DETAILS</h2>
         <div class="shipment-details">
-          <label for="name">Full Name:</label>
-          <input type="text" name="name" id="name" required />
-          
-          <label for="phone">Contact Number:</label>
-          <input type="text" name="phone" id="phone" required />
-          
+        
+          <!-- Sender Details -->
+          <h3>Sender Details</h3>
+          <label for="sender_name">Full Name:</label>
+          <input type="text" name="sender_name" id="sender_name" required />
+
+          <label for="sender_phone">Contact Number:</label>
+          <input type="text" name="sender_phone" id="sender_phone" required />
+
+          <!-- Receiver Details -->
+          <h3>Receiver Details</h3>
+          <label for="receiver_name">Full Name:</label>
+          <input type="text" name="receiver_name" id="receiver_name" required />
+
+          <label for="receiver_phone">Contact Number:</label>
+          <input type="text" name="receiver_phone" id="receiver_phone" required />
+
           <label for="address">Complete Address:</label>
           <input type="text" name="address" id="address" required />
 

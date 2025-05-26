@@ -9,6 +9,13 @@ if (!isset($_SESSION['user_name'])) {
     exit;
 }
 
+if (isset($_GET['logout']) && $_GET['logout'] == 1) {
+    session_unset();
+    session_destroy();
+    header("Location: http://localhost/vincere-de-floret/php/customer-landing-page.php");
+    exit;
+}
+
 $userName = $_SESSION['user_name'];
 
 //settings for customer-design-settings
@@ -107,7 +114,7 @@ if ($resultSettings->num_rows > 0) {
 
 <?php
 $purchasesQuery = "
-  SELECT o.id AS order_id, o.payment_method, oi.product_name, oi.product_image, oi.quantity, oi.price, oi.total_price, o.order_date, o.custom_letter
+  SELECT o.id AS order_id, o.payment_method, oi.product_name, oi.product_image, oi.quantity, oi.price, oi.total_price, o.order_date, o.custom_letter, o.status, o.shipping_status
   FROM orders o
   JOIN order_items oi ON o.id = oi.order_id
   WHERE o.user_name = ?
@@ -142,8 +149,8 @@ if ($result && mysqli_num_rows($result) > 0) {
         echo "<td>₱" . number_format($item['price'], 2) . "</td>";
         echo "<td>₱" . number_format($item['total_price'], 2) . "</td>";
         echo "<td>" . htmlspecialchars($item['payment_method']) . "</td>";
-        echo "<td><span style='color: green;'>Approved</span></td>";
-        echo "<td><span style='color: orange;'>To Ship</span></td>";
+        echo "<td><span style='color: Green;'>" . $item['status'] . "</span></td>";
+        echo "<td><span style='color: orange;'>" . $item['shipping_status'] . "</span></td>";
         if (!empty($item['custom_letter'])) {
             $filePath = htmlspecialchars($item['custom_letter']);
             echo "<td><a href='../$filePath' target='_blank'>View Letter</a></td>";

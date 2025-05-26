@@ -60,7 +60,7 @@ if (isset($_POST["register"])) {
             $mail->isHTML(true);
             $verification_code = substr(number_format(time() * rand(), 0, '', ''), 0, 6);
             $mail->Subject = 'Email verification';
-            $mail->Body = '<p>Your verification code is: <b style="font-size: 30px;">' . $verification_code . '</b></p>';
+            $mail->Body = '<p>Thank you for creating a Vincere De Floret account. We are excited to have you with us! To complete your registration, please verify your email address using the verification code provided below. Your verification code is: <b style="font-size: 30px;">' . $verification_code . '</b></p><p>If you did not create this account, please ignore this email or contact support.</p>';
             // send function to email
             $mail->send();
 

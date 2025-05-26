@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
 
             $mail->isHTML(true);
             $mail->Subject = 'Email Verification Code';
-            $mail->Body    = "<h3>Your Verification Code</h3><p>$verification_code</p>";
+            $mail->Body    = "<h3>Your Verification Code</h3><p>Please enter the following code to verify your account. This code is valid for 1 hour.</p><p>$verification_code</p><p>If you did not create an account, please ignore this email.</p>";
 
             $mail->send();
 

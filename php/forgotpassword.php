@@ -56,7 +56,7 @@
                 // Set email format to HTML
                 $mail->isHTML(true);
                 $mail->Subject = 'Password Reset';
-                $mail->Body    = '<p>Your verification code is: <b style="font-size: 30px;">' . $verification_code . '</b></p>';
+                $mail->Body    = '<p>  Forgot your password?  Don\'t worry, we got you covered!  Please enter the verification code below to reset your password.</p><p>  Your verification code is: <b style="font-size: 30px;">' . $verification_code . '</b></p>';
                 // Send function to email
                 $mail->send();
             } catch (Exception $e) {
