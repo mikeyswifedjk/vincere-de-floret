@@ -111,7 +111,7 @@ body {
     background-color: var(--snow-white);
     border-radius: 10px;
     overflow: hidden;
-    font-size: 12px;
+    font-size: 10px;
 }
 
 /* Table Headers */
@@ -119,7 +119,7 @@ body {
     background-color: var(--rich-purple);
     color: var(--snow-white);
     font-weight: bold;
-    padding: 8px 6px;
+    padding: 4px 2px;
     text-align: left;
     letter-spacing: 0.5px;
     border-bottom: 2px solid var(--light-lavender);
@@ -127,7 +127,7 @@ body {
 
 /* Table Cells */
 .viewTable td {
-    padding: 8px 6px;
+    padding: 4px 2px;
     border-bottom: 1px solid var(--cloud-gray);
     color: var(--slate-gray);
     background-color: var(--snow-white);
