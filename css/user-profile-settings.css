@@ -206,19 +206,117 @@ body {
   background-color: #e4d100;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .settings {
-    padding: 25px;
-    margin: 20px;
-  }
-
-  .profile-image {
-    width: 140px;
-    height: 140px;
-  }
+.settings-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  padding: 40px;
+  background-color: var(--white);
+  border-radius: 16px;
+  max-width: 1000px;
+  margin: 40px auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
-  
+.settings-left,
+.settings-right {
+  flex: 1 1 45%;
+}
+
+.profile-box {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.upload-btn {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 8px 16px;
+  background-color: var(--leaf-green);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.verification-box {
+  text-align: center;
+}
+
+.verify-warning {
+  background: #ffe9e9;
+  border: 1px solid #ff5c5c;
+  padding: 15px;
+  border-radius: 8px;
+  color: #cc0000;
+  font-weight: bold;
+}
+
+.resend-btn {
+  background-color: #cc0000;
+  color: white;
+  padding: 8px 16px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.verify-success {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: green;
+  font-weight: bold;
+  padding: 10px;
+}
+
+.checkmark {
+  display: inline-flex;
+  background-color: green;
+  color: white;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+}
+
+.settings-right h1 {
+  font-size: 2rem;
+  color: var(--deep-plum);
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.settings-right p {
+  font-size: 1rem;
+  color: var(--dusty-blue);
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+.save-btn {
+  display: block;
+  width: 100%;
+  padding: 14px 0;
+  background-color: var(--primary-yellow);
+  color: var(--earth-brown);
+  font-size: 1.1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(241, 226, 23, 0.6);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.save-btn:hover {
+  background-color: #e4d100;
+  box-shadow: 0 6px 12px rgba(228, 209, 0, 0.8);
+}
+
 
   

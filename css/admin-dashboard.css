@@ -33,10 +33,9 @@ body {
   overflow-x: auto;
 }
 
-/* Dashboard Summary Container */
 .dashboard-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(3, 1fr); 
   gap: 25px;
   margin-bottom: 50px;
 }
@@ -46,6 +45,7 @@ body {
   background-color: var(--white);
   border-radius: 16px;
   padding: 30px 25px;
+  height: 20vh;
   text-align: center;
   border-top: 4px solid var(--deep-plum);
   border-bottom: 4px solid var(--deep-plum);
@@ -96,8 +96,16 @@ body {
 
 /* Individual Item */
 .items {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   border-radius: 20px;
-  padding: 20px 15px;
+  padding: 10px 12px;
   background-color: var(--lavender-gray);
 }
 

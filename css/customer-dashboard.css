@@ -125,15 +125,27 @@ body {
   display: block;
 }
 
-/* Slider */
 .container-imageSlider {
   max-width: 100%;
   overflow: hidden;
+  max-height: 1000px; 
+  position: relative;
+}
+
+.mySlides {
+  display: none; 
 }
 
 .mySlides img {
   width: 100%;
+  height: auto; 
+  max-height: 600px; 
   border-radius: 10px;
+  object-fit: cover;
+}
+.DOT {
+  text-align: center;
+  margin-top: 12px;
 }
 
 .dot {
@@ -143,11 +155,13 @@ body {
   background-color: var(--lavender-gray);
   border-radius: 50%;
   display: inline-block;
+  cursor: pointer;
 }
 
 .dot.active {
   background-color: var(--deep-plum);
 }
+
 
 /* Categories */
 .content-categories {
@@ -202,9 +216,11 @@ body {
 
 .grid-items {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, max-content));
+  justify-content: center; 
   gap: 20px;
 }
+
 
 .items {
   background-color: var(--white);

@@ -193,88 +193,88 @@ function handleImageUpload($file, $column, $existingPath) {
 
     <h1 class="settings-title">Customer Design Settings</h1>
 
-<div class="settings-panel">
+<div class="settings-material">
 
-    <!-- Color Settings -->
-    <section class="settings-section color-settings">
-        <h2 class="section-title">Color Settings</h2>
-        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" id="colorForm" enctype="multipart/form-data">
-            <label for="background_color">Background Color:</label>
-            <input type="color" id="background_color" name="background_color" value="<?php echo $bgColor; ?>" required />
+  <!-- Admin Auth Card -->
+  <div class="material-card auth-card">
+    <div class="card-header">
+      <h2>🔐 Admin Authentication</h2>
+      <p>Confirm before applying changes.</p>
+    </div>
+    <form id="authForm">
+      <div class="input-group">
+        <label for="admin_password">Admin Password</label>
+        <input type="password" id="admin_password" name="admin_password" required>
+        <span class="note">Required for saving or updating any settings.</span>
+      </div>
+    </form>
+  </div>
 
-            <label for="font_color">Font Color:</label>
-            <input type="color" id="font_color" name="font_color" value="<?php echo $fontColor; ?>" required />
+  <!-- Color Settings Card -->
+  <div class="material-card color-card">
+    <div class="card-header">
+      <h2>🎨 Color Settings</h2>
+    </div>
+    <form method="post" action="<?= $_SERVER['PHP_SELF']; ?>" id="colorForm" enctype="multipart/form-data">
+      <div class="input-row">
+        <div class="input-group">
+          <label for="background_color">Background</label>
+          <input type="color" id="background_color" name="background_color" value="<?= $bgColor; ?>" required>
+        </div>
+        <div class="input-group">
+          <label for="font_color">Font</label>
+          <input type="color" id="font_color" name="font_color" value="<?= $fontColor; ?>" required>
+        </div>
+      </div>
+      <div class="button-group">
+        <button type="submit" name="updateColors">Save</button>
+        <button type="button" class="resetBtn" onclick="clearColors()">Reset</button>
+      </div>
+    </form>
+  </div>
 
-            <div class="button-group">
-                <button type="submit" name="updateColors">Save</button>
-                <button type="button" class="resetBtn" onclick="clearColors()">Reset</button>
-            </div>
-        </form>
-    </section>
+  <!-- Shop Details Card -->
+  <div class="material-card shop-card">
+    <div class="card-header">
+      <h2>🏪 Logo & Shop Name</h2>
+    </div>
+    <form method="post" action="<?= $_SERVER['PHP_SELF']; ?>" id="shopDetailsForm" enctype="multipart/form-data">
+      <div class="input-group">
+        <label for="shop_name">Shop Name</label>
+        <input type="text" id="shop_name" name="shop_name" value="<?= $shopName; ?>" required>
+      </div>
+      <div class="input-group">
+        <label for="logo_path">Upload Logo</label>
+        <input type="file" id="logo_path" name="logo_path">
+      </div>
+      <div class="preview-container">
+        <img src="../img/<?= basename($logoPath); ?>" alt="Logo Preview">
+        <p class="note">Max 70kb | .jpg, .jpeg, .png</p>
+      </div>
+      <button type="submit" name="updateShopDetails">Update</button>
+    </form>
+  </div>
 
-    <!-- Logo & Shop Name -->
-    <section class="settings-section shop-settings">
-        <h2 class="section-title">Logo & Shop Name</h2>
-        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" id="shopDetailsForm" enctype="multipart/form-data">
-            <label for="shop_name">Shop Name:</label>
-            <input type="text" id="shop_name" name="shop_name" value="<?php echo $shopName; ?>" required />
-
-            <label for="logo_path">Logo:</label>
-            <input type="file" id="logo_path" name="logo_path" />
-
-            <div class="preview-container">
-                <img src="../img/<?php echo basename($logoPath); ?>" alt="Logo Preview">
-                <p class="note">File Size: Max 70kb | Extensions: .jpg, .jpeg, .png</p>
-            </div>
-
-            <button type="submit" name="updateShopDetails">Update Details</button>
-        </form>
-    </section>
-
-    <!-- Image Slider -->
-    <section class="settings-section slider-settings">
-        <h2 class="section-title">Image Slider</h2>
-        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" id="imagesForm" enctype="multipart/form-data">
-            <div class="image-upload">
-                <label for="image_one_path">Image One:</label>
-                <input type="file" id="image_one_path" name="image_one_path" />
-                <div class="preview-container">
-                    <img src="../img/<?php echo basename($imageOnePath); ?>" alt="Image One Preview">
-                    <p class="note">File Size: Max 70kb | Extensions: .jpg, .jpeg, .png</p>
-                </div>
-            </div>
-
-            <div class="image-upload">
-                <label for="image_two_path">Image Two:</label>
-                <input type="file" id="image_two_path" name="image_two_path" />
-                <div class="preview-container">
-                    <img src="../img/<?php echo basename($imageTwoPath); ?>" alt="Image Two Preview">
-                    <p class="note">File Size: Max 70kb | Extensions: .jpg, .jpeg, .png</p>
-                </div>
-            </div>
-
-            <div class="image-upload">
-                <label for="image_three_path">Image Three:</label>
-                <input type="file" id="image_three_path" name="image_three_path" />
-                <div class="preview-container">
-                    <img src="../img/<?php echo basename($imageThreePath); ?>" alt="Image Three Preview">
-                    <p class="note">File Size: Max 70kb | Extensions: .jpg, .jpeg, .png</p>
-                </div>
-            </div>
-
-            <button type="submit" name="updateImages">Update Slider</button>
-        </form>
-    </section>
-
-    <!-- Admin Authentication -->
-    <section class="settings-section auth-section">
-        <h2 class="section-title">Admin Authentication</h2>
-        <form id="authForm">
-            <label for="admin_password">Enter Admin Password:</label>
-            <input type="password" id="admin_password" name="admin_password" required />
-            <p class="note">Required for saving or updating any settings.</p>
-        </form>
-    </section>
+  <!-- Slider Images Card -->
+  <div class="material-card slider-card">
+    <div class="card-header">
+      <h2>🖼️ Image Slider</h2>
+    </div>
+    <form method="post" action="<?= $_SERVER['PHP_SELF']; ?>" id="imagesForm" enctype="multipart/form-data">
+      <?php foreach (['one', 'two', 'three'] as $index => $num): ?>
+        <?php $var = "image" . ucfirst($num) . "Path"; ?>
+        <div class="image-upload">
+          <label for="image_<?= $num ?>_path">Image <?= ucfirst($num) ?></label>
+          <input type="file" id="image_<?= $num ?>_path" name="image_<?= $num ?>_path" />
+          <div class="preview-container">
+            <img src="../img/<?= basename($$var); ?>" alt="Image <?= ucfirst($num) ?> Preview">
+            <p class="note">Max 70kb | .jpg, .jpeg, .png</p>
+          </div>
+        </div>
+      <?php endforeach; ?>
+      <button type="submit" name="updateImages">Update Slider</button>
+    </form>
+  </div>
 
 </div>
     </div>
