@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 21, 2025 at 10:01 AM
+-- Generation Time: May 26, 2025 at 04:16 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -98,6 +98,13 @@ CREATE TABLE `cart` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`id`, `user_id`, `product_id`, `product_name`, `product_image`, `quantity`, `price`, `created_at`, `updated_at`) VALUES
+(351, 77, 213, 'Bundle 3', '682940c8c0505.jpg', 1, '799', '2025-05-26 01:35:37', '2025-05-26 01:35:37');
 
 -- --------------------------------------------------------
 
@@ -223,26 +230,34 @@ INSERT INTO `flower` (`id`, `name`, `image`, `category`, `qty`, `price`, `catego
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
   `user_name` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `phone` varchar(20) NOT NULL,
+  `sender_name` varchar(255) NOT NULL,
+  `sender_phone` varchar(20) NOT NULL,
   `address` varchar(255) NOT NULL,
   `payment_method` varchar(50) NOT NULL,
   `total_amount` decimal(10,2) NOT NULL,
   `order_date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `status` varchar(255) DEFAULT 'approved\r\n',
+  `status` varchar(255) DEFAULT 'Under Review',
   `custom_letter` text DEFAULT NULL,
   `region_id` int(11) NOT NULL,
-  `discount_code` varchar(255) NOT NULL
+  `discount_code` varchar(255) NOT NULL,
+  `receiver_name` varchar(255) NOT NULL,
+  `receiver_phone` int(11) NOT NULL,
+  `shipping_status` varchar(255) NOT NULL DEFAULT 'Pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `user_name`, `name`, `phone`, `address`, `payment_method`, `total_amount`, `order_date`, `status`, `custom_letter`, `region_id`, `discount_code`) VALUES
-(82, 'test1', 'test', '09123456789', 'Testing St.', 'BDO', 16903.00, '2025-05-21 07:34:12', 'approved\r\n', 'letters/letter_1747812833_2357.pdf', 1, 'AQYL3290'),
-(83, 'test1', 'Testing', '09123456789', 'Testing St.', 'GCash', 25005.00, '2025-05-21 07:37:10', 'approved\r\n', NULL, 1, 'FTLX6803'),
-(84, 'test1', 'test', '09123456789', 'Testing St.', 'COD', 384.00, '2025-05-21 07:38:26', 'approved\r\n', NULL, 1, 'AGJN1506');
+INSERT INTO `orders` (`id`, `user_name`, `sender_name`, `sender_phone`, `address`, `payment_method`, `total_amount`, `order_date`, `status`, `custom_letter`, `region_id`, `discount_code`, `receiver_name`, `receiver_phone`, `shipping_status`) VALUES
+(82, 'test1', 'test', '09123456789', 'Testing St.', 'BDO', 16903.00, '2025-05-21 07:34:12', 'Approved', 'letters/letter_1747812833_2357.pdf', 1, 'AQYL3290', 'receiver', 78945632, 'Out for Delivery'),
+(83, 'test1', 'Testing', '09123456789', 'Testing St.', 'GCash', 25005.00, '2025-05-21 07:37:10', 'Under Review\r\n', NULL, 1, 'FTLX6803', 'receiver', 978456321, 'Pending'),
+(84, 'test1', 'test', '09123456789', 'Testing St.', 'COD', 384.00, '2025-05-21 07:38:26', 'Under Review\r\n', NULL, 1, 'AGJN1506', 'receiver', 912345678, 'Pending'),
+(85, 'test1', 'Testing', '09123456789', 'Testing St.', 'COD', 24085.00, '2025-05-21 10:18:59', 'Under Review', '', 1, 'XLOV3271', 'receiver', 912345678, 'Pending'),
+(86, 'test1', 'Testing', '09123456789', 'Testing St.', 'GCash', 17054.00, '2025-05-25 15:49:31', 'Approved\r\n', 'letters/letter_1748188150_1844.pdf', 2, 'AGJN1506', 'receiver', 978945623, 'Processing'),
+(87, 'test1', 'sender', '03123456789', 'Testing St.', 'GCash', 784.00, '2025-05-26 01:31:50', 'Under Review\r\n', NULL, 4, 'WKUZ9376', 'receiver', 987654321, 'Pending'),
+(88, 'test1', 'sender', '09123456789', 'Testing St.', 'BDO', 14334.00, '2025-05-26 01:37:30', 'Under Review\r\n', NULL, 1, 'GHTI5607', 'Receiver', 945621389, 'Pending'),
+(89, 'test1', 'sender', '098745632', 'Testing St. Test', 'COD', 8424.00, '2025-05-26 01:55:51', 'Under Review', NULL, 1, 'WKUZ9376', 'receiver', 912345678, 'Pending');
 
 -- --------------------------------------------------------
 
@@ -267,7 +282,12 @@ CREATE TABLE `order_items` (
 INSERT INTO `order_items` (`id`, `order_id`, `product_name`, `quantity`, `price`, `total_price`, `product_image`) VALUES
 (83, 82, 'Fruit Basket 3', 2, 8459.00, 16918.00, '682941dc1b6b8.jpg'),
 (84, 83, 'Money Bouquet 5', 1, 25000.00, 25000.00, '68294a3ca4412.jpg'),
-(85, 84, 'Bundle 3', 1, 799.00, 799.00, '682940c8c0505.jpg');
+(85, 84, 'Bundle 3', 1, 799.00, 799.00, '682940c8c0505.jpg'),
+(86, 85, 'Money Bouquet 5', 1, 25000.00, 25000.00, '68294a3ca4412.jpg'),
+(87, 86, 'Money Bouquet 6', 1, 17459.00, 17459.00, '68294a4fc9789.jpg'),
+(88, 87, 'Bundle 3', 1, 799.00, 799.00, '682940c8c0505.jpg'),
+(89, 88, 'Bundle 10', 1, 15249.00, 15249.00, '6829418771d64.jpg'),
+(90, 89, 'Fruit Basket 3', 1, 8459.00, 8459.00, '682941dc1b6b8.jpg');
 
 -- --------------------------------------------------------
 
@@ -481,8 +501,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `verification_code`, `email_verified_at`, `reset_token`, `reset_token_expiration`, `last_attempt`, `blocked`, `attempts`, `contact_number`, `address`, `image_path`, `first_name`, `middle_name`, `last_name`) VALUES
-(77, 'test1', 'test1@gmail.com', '$2y$10$RmBCWTOeijBRXqOF8uKbie3DSYXd3P2z5.nSwyIPKIkf865NhvIAi', 241386, '2025-05-17 22:16:54.000000', NULL, NULL, '2025-05-17 14:16:41', 0, 0, '09123456789', 'Testing St.', '../img/6829536b2dfe5.jpg', 'Testing', 'T', 'Testing'),
-(78, 'test2', 'test2@gmail.com', '$2y$10$RMxabFjN1GQu.F5R6J5l4OliJ.rU/rRebMTJrQ1mv3TbBT275fYWq', 569408, NULL, NULL, NULL, '2025-05-18 01:58:02', 1, 0, '09123456789', 'Testing St.', NULL, 'Testing', 'T', 'Test');
+(77, 'test1', 'test1@gmail.com', '$2y$10$RmBCWTOeijBRXqOF8uKbie3DSYXd3P2z5.nSwyIPKIkf865NhvIAi', 168148, '2025-05-17 22:16:54.000000', 'a32903518b7e7a0565fc0536f009c12e', '2025-05-25 19:35:18', '2025-05-17 14:16:41', 0, 0, '09123456789', 'Testing St.', '../img/68333de6cb087.jpg', 'Testing', 'T', 'Testing'),
+(78, 'test2', 'test2@gmail.com', '$2y$10$RMxabFjN1GQu.F5R6J5l4OliJ.rU/rRebMTJrQ1mv3TbBT275fYWq', 569408, NULL, NULL, NULL, '2025-05-18 01:58:02', 1, 0, '09123456789', 'Testing St.', NULL, 'Testing', 'T', 'Test'),
+(79, 'itsmy', 'ybiza2018@gmail.com', '$2y$10$WpgiPqf7dcXQHloR4TAscONmszHdNkvUGwPK4gXTn39EGhyLpj5ya', 252240, '2025-05-26 00:40:27.000000', '993df0d8b84cffc5847a333f98543b7b', '2025-05-25 19:41:44', '2025-05-25 16:40:13', 0, 0, '09496563656', 'Kalye Katorse', '', 'Maika', 'Ybiza O.', 'Simbulan');
 
 --
 -- Indexes for dumped tables
@@ -596,7 +617,7 @@ ALTER TABLE `addons`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=347;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=353;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -626,13 +647,13 @@ ALTER TABLE `flower`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT for table `pos_orders`
@@ -668,7 +689,7 @@ ALTER TABLE `shipping`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- Constraints for dumped tables
