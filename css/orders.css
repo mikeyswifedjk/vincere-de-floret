@@ -261,3 +261,38 @@ body {
     border-radius: 5px;
     cursor: pointer;
 }
+
+/* Dropdown Styling for Status & Shipping Status */
+.viewTable select {
+  padding: 4px 4px;
+  font-size: 13px;
+  border: 1px solid var(--light-lavender);
+  border-radius: 6px;
+  background-color: var(--snow-white);
+  color: var(--slate-gray);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  max-width: 140px;
+}
+
+.viewTable select:focus {
+  border-color: var(--rich-purple);
+  outline: none;
+  box-shadow: 0 0 0 2px var(--soft-shadow);
+}
+
+/* Update Button Style */
+.viewTable button[type="submit"] {
+  background-color: var(--rich-purple);
+  color: white;
+  padding: 6px 12px;
+  font-size: 13px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.viewTable button[type="submit"]:hover {
+  background-color: #573a65;
+}
