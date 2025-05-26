@@ -81,13 +81,13 @@ if (isset($_POST["submit"])) {
     </div> -->
 
     <!-- Add Product Section -->
-    <h1 class="text1">Bundle Deal</h1>
+    <h1 class="text1">Product Management</h1>
     <div class="add">
         <form action="" method="post" autocomplete="off" enctype="multipart/form-data">
-            <label for="name">Bundle Name:</label>
+            <label for="name">Product Name:</label>
             <input type="text" name="name" id="name" required autocomplete="name"><br><br>
 
-            <label for="image">Bundle Image:</label>
+            <label for="image">Product Image:</label>
             <input type="file" name="image" id="image" accept=".jpg, .jpeg, .png, .webp, .avif"
                    autocomplete="file" onchange="previewImage(this);" required><br><br>
 

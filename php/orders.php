@@ -73,6 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_status'])) {
                 <th>Order Date</th>
                 <th>Status</th>
                 <th>Shipping Status</th>
+                <th>GCash Receipt</th>
                 <th>Action</th>
             </tr>
             <?php
@@ -132,6 +133,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_status'])) {
                                 <option value='Delivered'" . ($order['shipping_status'] == 'Delivered' ? ' selected' : '') . ">Delivered</option>
                             </select>
                         </td>";
+                    if ($order['payment_method'] === 'GCash' && !empty($order['gcash_receipt'])) {
+                        $receiptPath = $order['gcash_receipt'];
+                        echo "<td><a href='$receiptPath' target='_blank'>View</a></td>";
+                    } else {
+                        echo "<td>-</td>";
+                    }
                     echo "<td><button type='submit' name='update_status'>Update</button></td>";
                     echo "</form>";
                     echo "</tr>";

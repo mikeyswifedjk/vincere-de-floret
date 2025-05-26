@@ -179,54 +179,54 @@ if ($row = $verifyResult->fetch_assoc()) {
     </div>
   </section>
 
-  <!-- Best Selling Items Section -->
-  <section class="daily-discover-content">
-    <div class="daily-discover-title"><h3>Top Picks</h3></div>
-    <div class="daily-discover-container">
-      <div class="grid-items">
-        <?php
-          $bestSellerQuery = "
-            SELECT p.id, p.name, p.image, p.price, SUM(oi.quantity) as total_sold
-            FROM order_items oi
-            JOIN product p ON oi.product_name = p.name
-            GROUP BY p.id
-            HAVING total_sold > 3
-            ORDER BY total_sold DESC
-            LIMIT 6
-          ";
-          $bestSellerResult = mysqli_query($conn, $bestSellerQuery);
+<!-- Best Selling Items Section -->
+<section class="daily-discover-content">
+  <div class="daily-discover-title"><h3>Top Picks</h3></div>
+  <div class="daily-discover-container">
+    <div class="grid-items">
+      <?php
+        // Updated query: try with product_id if available
+        $bestSellerQuery = "
+          SELECT p.id, p.name, p.image, p.price, SUM(oi.quantity) AS total_sold
+          FROM order_items oi
+          JOIN product p ON oi.product_name = p.name
+          GROUP BY p.id
+          HAVING total_sold >= 1
+          ORDER BY total_sold DESC
+          LIMIT 1
+        ";
+        $bestSellerResult = mysqli_query($conn, $bestSellerQuery);
 
-          // Check email verification
-          $verifyCheckQuery = "SELECT email_verified_at FROM users WHERE name = ?";
-          $verifyStmt = mysqli_prepare($conn, $verifyCheckQuery);
-          mysqli_stmt_bind_param($verifyStmt, "s", $userName);
-          mysqli_stmt_execute($verifyStmt);
-          $verifyResult = mysqli_stmt_get_result($verifyStmt);
-          $isVerified = false;
-          if ($verifyRow = mysqli_fetch_assoc($verifyResult)) {
-            $isVerified = !is_null($verifyRow['email_verified_at']);
-          }
-
-          while ($row = mysqli_fetch_assoc($bestSellerResult)):
+        if (!$bestSellerResult) {
+          echo "<p>Error fetching top picks: " . mysqli_error($conn) . "</p>";
+        } elseif (mysqli_num_rows($bestSellerResult) > 0) {
+          while ($row = mysqli_fetch_assoc($bestSellerResult)) {
+            $productId = (int)$row['id'];
             $productName = htmlspecialchars($row['name']);
-            $productPrice = number_format($row['price'], 2);
             $productImage = htmlspecialchars($row['image']);
-            $productLink = "product-details.php?id=" . $row['id'];
-        ?>
-          <a class="product-link"
-            href="<?= $isVerified ? $productLink : 'javascript:void(0)' ?>"
-            <?= !$isVerified ? "onclick=\"alert('Please verify your email first.'); window.location.href='user-profile-settings.php'; return false;\"" : "" ?>>
-            <div class="items">
-              <img src="../img/<?= $productImage ?>" alt="<?= $productName ?>" />
-              <div class="discover-description"><span><?= $productName ?></span></div>
-              <div class="discover-price"><p>₱<?= $productPrice ?></p></div>
-              <div class="shopnow-button"><p>SHOP NOW</p></div>
-            </div>
-          </a>
-        <?php endwhile; ?>
-      </div>
+            $productPrice = number_format($row['price'], 2);
+            $productLink = "product-details.php?id=" . $productId;
+      ?>
+        <a class="product-link"
+           href="<?= $isVerified ? $productLink : 'javascript:void(0)' ?>"
+           <?= !$isVerified ? "onclick=\"alert('Please verify your email first.'); window.location.href='user-profile-settings.php'; return false;\"" : "" ?>>
+          <div class="items">
+            <img src="../img/<?= $productImage ?>" alt="<?= $productName ?>" />
+            <div class="discover-description"><span><?= $productName ?></span></div>
+            <div class="discover-price"><p>₱<?= $productPrice ?></p></div>
+            <div class="shopnow-button"><p>SHOP NOW</p></div>
+          </div>
+        </a>
+      <?php
+          }
+        } else {
+          echo "<p style='text-align:center;'>No top picks found yet. Check back later!</p>";
+        }
+      ?>
     </div>
-  </section>
+  </div>
+</section>
+
 
   <!-- Product Grid Section -->
   <section class="daily-discover-content" id="product">

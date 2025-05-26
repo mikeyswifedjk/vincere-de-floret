@@ -111,27 +111,37 @@ if ($resultSettings->num_rows > 0) {
   <div class="daily-discover-container">
     <div class="grid-items">
       <?php
+        // Adjust this join if you have a product_id field in order_items
         $bestSellerQuery = "
           SELECT p.id, p.name, p.image, p.price, SUM(oi.quantity) as total_sold
           FROM order_items oi
           JOIN product p ON oi.product_name = p.name
           GROUP BY p.id
-          HAVING total_sold > 3
           ORDER BY total_sold DESC
-          LIMIT 6
+          LIMIT 1
         ";
+
         $bestSellerResult = mysqli_query($conn, $bestSellerQuery);
-        while ($row = mysqli_fetch_assoc($bestSellerResult)):
+
+        if (!$bestSellerResult) {
+          echo "<p>Error fetching top picks: " . mysqli_error($conn) . "</p>";
+        } elseif (mysqli_num_rows($bestSellerResult) > 0) {
+          while ($row = mysqli_fetch_assoc($bestSellerResult)) {
       ?>
         <a class="product-link" href="login.php" onclick="alert('Please log in to view product details.')">
           <div class="items">
-            <img src="../img/<?= $row['image'] ?>" alt="<?= $row['name'] ?>" />
-            <div class="discover-description"><span><?= $row['name'] ?></span></div>
+            <img src="../img/<?= htmlspecialchars($row['image']) ?>" alt="<?= htmlspecialchars($row['name']) ?>" />
+            <div class="discover-description"><span><?= htmlspecialchars($row['name']) ?></span></div>
             <div class="discover-price"><p>₱<?= number_format($row['price'], 2) ?></p></div>
             <div class="shopnow-button"><p>Shop Now</p></div>
           </div>
         </a>
-      <?php endwhile; ?>
+      <?php
+          }
+        } else {
+          echo "<p style='text-align:center;'>No top picks available at the moment.</p>";
+        }
+      ?>
     </div>
   </div>
 </section>

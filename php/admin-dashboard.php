@@ -91,6 +91,18 @@ include('admin-nav.php');
           <h2>Products</h2>
           <p><?php echo $totalProducts; ?></p>
         </div>
+
+        <?php
+          // Fetch total active discounts
+          $selectTotalDiscountsQuery = "SELECT COUNT(id) AS total_discounts FROM discounts WHERE status = 'active'";
+          $totalDiscountsResult = mysqli_query($dbConnectionOrders, $selectTotalDiscountsQuery);
+          $totalDiscountsData = mysqli_fetch_assoc($totalDiscountsResult);
+          $totalDiscounts = isset($totalDiscountsData['total_discounts']) ? $totalDiscountsData['total_discounts'] : 0;
+        ?>
+        <div class="dashboard-item">
+          <h2>Active Discounts</h2>
+          <p><?php echo $totalDiscounts; ?></p>
+        </div>
       </div>
 
       <?php

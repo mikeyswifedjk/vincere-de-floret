@@ -64,6 +64,7 @@ $senderPhoneValue = htmlspecialchars($userDetails['contact_number']);
 $selectedItems = isset($_SESSION['selected_items']) ? array_filter(explode(",", $_SESSION['selected_items']), 'is_numeric') : [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
     $senderName = $_POST['sender_name'];
     $senderPhone = $_POST['sender_phone'];
 
@@ -73,6 +74,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $regionId = $_POST['region'];
     $discountCode = $_POST['discount_code'];
     $paymentMethod = $_POST['payment_method'];
+
+    $gcashReceiptPath = null;
+
+    if ($paymentMethod === 'GCash' && isset($_FILES['gcash_receipt']) && $_FILES['gcash_receipt']['error'] === UPLOAD_ERR_OK) {
+        $uploadDir = '../img/';
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0777, true);
+        }
+
+        $fileTmp = $_FILES['gcash_receipt']['tmp_name'];
+        $fileName = basename($_FILES['gcash_receipt']['name']);
+        $uniqueName = uniqid() . '_' . $fileName;
+        $targetFilePath = $uploadDir . $uniqueName;
+
+        if (move_uploaded_file($fileTmp, $targetFilePath)) {
+            $gcashReceiptPath = $targetFilePath;
+        } else {
+            die("Failed to upload GCash receipt.");
+        }
+    }
 
     // Shipping fee
     $shippingQuery = "SELECT fee FROM shipping WHERE id = ?";
@@ -133,8 +154,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $customLetterPath = $_SESSION['custom_letter_path'] ?? null;
 
-     $insertOrder = $conn->prepare("INSERT INTO orders (user_name, sender_name, sender_phone, receiver_name, receiver_phone, address, region_id, discount_code, payment_method, total_amount, custom_letter) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)");
-    $insertOrder->bind_param("sssssssssss", $userName, $senderName, $senderPhone, $receiverName, $receiverPhone, $address, $regionId, $discountCode, $paymentMethod, $totalAmount, $customLetterPath);
+    $insertOrder = $conn->prepare("INSERT INTO orders (user_name, sender_name, sender_phone, receiver_name, receiver_phone, address, region_id, discount_code, payment_method, total_amount, custom_letter, gcash_receipt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $insertOrder->bind_param("ssssssssssss", $userName, $senderName, $senderPhone, $receiverName, $receiverPhone, $address, $regionId, $discountCode, $paymentMethod, $totalAmount, $customLetterPath, $gcashReceiptPath);
     $insertOrder->execute();
     $orderId = $conn->insert_id;
 
@@ -159,9 +180,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $clearCart->bind_param("s", $userName);
     $clearCart->execute();
 
-    if ($paymentMethod === "GCash") {
-        header("Location: gcash-payment.php");
-    } elseif ($paymentMethod === "BDO") {
+    if ($paymentMethod === "BDO") {
         header("Location: bdo-payment.php");
     } else {
         header("Location: order-confirmation.php");
@@ -247,7 +266,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </header>
 
   <div class="checkout-container">
-    <form id="checkout-form" method="POST" action="checkout.php">
+    <form id="checkout-form" method="POST" action="checkout.php" enctype="multipart/form-data">
       <div class="products">
         <h2>PRODUCT LIST</h2>
         <button type="button" class="create-custom-letter" onclick="window.location.href='custom-letter.php'">Create Custom Letter</button>
@@ -336,6 +355,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <img src="../assets/shipping/gcash.png" alt="GCash" />
     </label>
   </div>
+
+  <div id="gcash-upload-container" style="display: none; margin-top: 15px;">
+    <label for="gcash_receipt">Upload GCash Receipt:</label>
+    <input type="file" name="gcash_receipt" id="gcash_receipt" accept="image/*" required />
+  </div>
 </div>
 
 
@@ -375,6 +399,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             var totalAmount = subtotal + shippingFee - discountAmount;
             document.getElementById('total_amount').textContent = totalAmount.toFixed(2);
         }
+        const paymentRadios = document.querySelectorAll('input[name="payment_method"]');
+        const gcashContainer = document.getElementById('gcash-upload-container');
+
+        paymentRadios.forEach(radio => {
+          radio.addEventListener('change', function() {
+            gcashContainer.style.display = (this.value === 'GCash') ? 'block' : 'none';
+            document.getElementById('gcash_receipt').required = this.value === 'GCash';
+          });
+        });
     </script>
 </body>
 </html>
