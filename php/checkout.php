@@ -51,6 +51,16 @@ while ($row = $discountResult->fetch_assoc()) {
     $discounts[] = $row;
 }
 
+// Get user details
+$userDetailsQuery = $conn->prepare("SELECT first_name, middle_name, last_name, contact_number FROM users WHERE name = ?");
+$userDetailsQuery->bind_param("s", $userName);
+$userDetailsQuery->execute();
+$userDetailsResult = $userDetailsQuery->get_result();
+$userDetails = $userDetailsResult->fetch_assoc();
+
+$senderNameValue = htmlspecialchars($userDetails['first_name'] . ' ' . $userDetails['middle_name'] . ' ' . $userDetails['last_name']);
+$senderPhoneValue = htmlspecialchars($userDetails['contact_number']);
+
 $selectedItems = isset($_SESSION['selected_items']) ? array_filter(explode(",", $_SESSION['selected_items']), 'is_numeric') : [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -280,11 +290,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
           <!-- Sender Details -->
           <h3>Sender Details</h3>
-          <label for="sender_name">Full Name:</label>
-          <input type="text" name="sender_name" id="sender_name" required />
-
-          <label for="sender_phone">Contact Number:</label>
-          <input type="text" name="sender_phone" id="sender_phone" required />
+          <input type="text" name="sender_name" id="sender_name" value="<?= $senderNameValue ?>" required />
+          <input type="text" name="sender_phone" id="sender_phone" value="<?= $senderPhoneValue ?>" required />
 
           <!-- Receiver Details -->
           <h3>Receiver Details</h3>
