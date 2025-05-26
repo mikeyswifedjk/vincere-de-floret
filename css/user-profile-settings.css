@@ -151,8 +151,8 @@ body {
 /* Profile Image Styling */
 .profile-image {
   display: block;
-  width: 180px;
-  height: 180px;
+  width: 450px;
+  height: 450px;
   object-fit: cover;
   border-radius: 50%;
   margin: 0 auto 20px;
@@ -227,6 +227,7 @@ body {
   text-align: center;
   margin-bottom: 30px;
 }
+
 
 .upload-btn {
   display: inline-block;
