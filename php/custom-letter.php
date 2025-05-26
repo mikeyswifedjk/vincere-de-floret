@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pdf->Output($absolutePath, 'F');
 
     // Save relative path for database use
-    $_SESSION['custom_letter_path'] = $relativePath;
+    $_SESSION['custom_letter_path'] = 'letters/' . basename($absolutePath);
 
     // Redirect to checkout
     header("Location: checkout.php");

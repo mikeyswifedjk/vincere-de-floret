@@ -133,14 +133,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $customLetterPath = $_SESSION['custom_letter_path'] ?? null;
 
-    $insertOrder = $conn->prepare("INSERT INTO orders 
-        (user_name, sender_name, sender_phone, receiver_name, receiver_phone, address, region_id, discount_code, payment_method, total_amount, custom_letter) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
-    $insertOrder->bind_param("ssssssssssd", 
-        $userName, $senderName, $senderPhone, $receiverName, $receiverPhone, $address, 
-        $regionId, $discountCode, $paymentMethod, $totalAmount, $customLetterPath
-    );
+     $insertOrder = $conn->prepare("INSERT INTO orders (user_name, sender_name, sender_phone, receiver_name, receiver_phone, address, region_id, discount_code, payment_method, total_amount, custom_letter) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)");
+    $insertOrder->bind_param("sssssssssss", $userName, $senderName, $senderPhone, $receiverName, $receiverPhone, $address, $regionId, $discountCode, $paymentMethod, $totalAmount, $customLetterPath);
     $insertOrder->execute();
     $orderId = $conn->insert_id;
 
