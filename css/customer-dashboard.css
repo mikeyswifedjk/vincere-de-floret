@@ -133,16 +133,20 @@ body {
 }
 
 .mySlides {
-  display: none; 
+  display: none;
+  text-align: center; 
 }
 
 .mySlides img {
   width: 100%;
-  height: auto; 
-  max-height: 500px; 
+  height: auto;
+  max-width: 1200px;
+  max-height: 500px;
   border-radius: 10px;
   object-fit: cover;
+  margin: 0 auto; 
 }
+
 .DOT {
   text-align: center;
   margin-top: 12px;
